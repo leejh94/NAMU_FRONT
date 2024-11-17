@@ -6,7 +6,7 @@
 ## 목차
 
 1. [프로젝트 소개](#1-프로젝트-소개)
-2. [현재 진행 사항 및 진행 예정](#2-현재 진행 사항 및 진행 예정)
+2. [현재 진행 사항 및 진행 예정](#2-현재-진행-사항-및-진행-예정)
 3. [개발 환경](#3-개발-환경)
 4. [주요 기능](#4-주요-기능)
 5. [구조 및 아키텍처](#5-구조-및-아키텍처)
@@ -22,10 +22,11 @@
 
 본 사이트는 공정거래위원회에서 제공하는 [정보공개서](https://franchise.ftc.go.kr/mnu/00013/program/userRqst/list.do)를 Python 크롤링을 통해 데이터베이스화하여 구축되었습니다.
 
+이 프로젝트는 **프론트엔드**와 **백엔드**를 모두 혼자 개발하는 **풀스택 프로젝트**로 진행되고 있습니다. 따라서 개발 속도가 다소 느릴 수 있으나, 완성도를 높이기 위해 최선을 다하고 있습니다.
+
 ## 2. 현재 진행 사항 및 진행 예정
 
-- 뉴스 api 추가 (완료)
-- 전 페이지 미디어 쿼리 적용 (진행 중)
+- 일반유저 (카카오 로그인) 회원가입 , 관리자 회원가입 (진행중)
 - 로딩 스피너 적용 (진행예정)
 
 ## 3. 개발 환경
@@ -52,15 +53,21 @@
 
 ## 6. 데이터베이스 구조
 
-프랜차이즈 관련 정보를 저장하고 조회하기 위해 여러 개의 테이블이 데이터베이스에 구성되어 있습니다. 아래는 주요 테이블과 각 테이블의 역할입니다.
-
 ### 데이터베이스 ERD
 
-![Database ERD](path_to_your_image.png)
+### 회원관련
 
-### 테이블 설명
+![회원관련 테이블 ERD](/src/assets/readme/table1.png)
 
-- **failed_crawl_log**: 크롤링 실패한 고유번호(`fir_mst_sn`)와 에러 메시지(`error_message`), 시도 날짜(`attempt_date`)를 저장
+### 정보공개서 크롤링 데이터 관련
+
+![크롤링 테이블 ERD](/src/assets/readme/table2.png)
+
+#
+
+<!-- ### 테이블 설명 -->
+
+<!-- - **failed_crawl_log**: 크롤링 실패한 고유번호(`fir_mst_sn`)와 에러 메시지(`error_message`), 시도 날짜(`attempt_date`)를 저장
 - **franchise_changes**: `fir_mst_sn`별로 연도(`report_year`)와 해당 연도의 신규 개점 수(`new_openings`), 계약 종료 수(`contract_terminations`), 계약 해지 수(`contract_cancellations`), 명의 변경 수(`name_changes`)를 저앙
 - **franchise_basic_info**: 프랜차이즈의 기본 정보를 저장하는 테이블로, 고유번호(`fir_mst_sn`), 상호(`company_name`), 영업표지(`business_mark`), 대표자, 업종(`industry`), 법인설립일, 사업자등록일, 주소 등 기본적인 식별 정보를 저장
 - **franchise_financial_status**: `fir_mst_sn`과 연도(`report_year`)별로 자산(`assets`), 부채(`liabilities`), 자본(`equity`), 매출(`revenue`), 영업이익(`operating_income`), 당기순이익(`net_income`) 등 재무 상태를 저장
@@ -69,7 +76,7 @@
 - **avg_sales_by_region**: `fir_mst_sn`과 연도(`report_year`), 지역(`region`)별로 프랜차이즈의 평균 매출(`avg_sales`), 면적당 평균 매출(`avg_sales_per_area`), 가맹점 수(`franchise_count`)를 저장
 - **franchise_store_status**: `fir_mst_sn`과 연도(`report_year`), 지역(`region`)별로 전체 매장 수(`total_stores`), 가맹점 수(`franchise_stores`), 직영점 수(`direct_stores`)를 저장
 - **interior_costs**: `fir_mst_sn`별로 단위 면적당 인테리어 비용(`unit_area_cost`), 기준 점포 면적(`standard_store_area`), 전체 인테리어 비용(`interior_cost`)을 저장
-- **promo_costs**: `fir_mst_sn`과 연도(`report_year`)별로 광고비(`ad_cost`)와 판촉비(`promo_cost`)를 저장
+- **promo_costs**: `fir_mst_sn`과 연도(`report_year`)별로 광고비(`ad_cost`)와 판촉비(`promo_cost`)를 저장 -->
 
 ## 7. API 형식
 

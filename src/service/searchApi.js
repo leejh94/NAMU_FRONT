@@ -4,7 +4,7 @@ import apiClient from "./axiosConfig"; // 백엔드 api 호출시 사용
 // 회사명 목록을 가져오는 API 호출 함수
 export const getCompanyNameList = async (searchType, searchWord) => {
   try {
-    const response = await apiClient.get("/companyNameList", {
+    const response = await apiClient.get("/common/companyNameList", {
       params: {
         searchType,
         searchWord,
@@ -19,7 +19,7 @@ export const getCompanyNameList = async (searchType, searchWord) => {
 
 export const getCompanyBasicInfo = async (companyNo) => {
   try {
-    const response = await apiClient.get("/companyBasicInfo", {
+    const response = await apiClient.get("/common/companyBasicInfo", {
       params: {
         companyNo,
       },
@@ -33,7 +33,7 @@ export const getCompanyBasicInfo = async (companyNo) => {
 
 export const getCompanySalesInfo = async (companyNo, region) => {
   try {
-    const response = await apiClient.get("/companySalesInfo", {
+    const response = await apiClient.get("/common/companySalesInfo", {
       params: {
         companyNo,
         region,
@@ -48,7 +48,7 @@ export const getCompanySalesInfo = async (companyNo, region) => {
 
 export const getCompanyRegionTotalCount = async (companyNo) => {
   try {
-    const response = await apiClient.get("/companyRegionTotalCount", {
+    const response = await apiClient.get("/common/companyRegionTotalCount", {
       params: {
         companyNo,
       },
@@ -62,7 +62,7 @@ export const getCompanyRegionTotalCount = async (companyNo) => {
 
 export const getFranchiseFee = async (companyNo) => {
   try {
-    const response = await apiClient.get("/franchiseFee", {
+    const response = await apiClient.get("/common/franchiseFee", {
       params: {
         companyNo,
       },
@@ -77,7 +77,7 @@ export const getFranchiseFee = async (companyNo) => {
 export const getNaverNewsList = async (companyNo, count) => {
   try {
     // API 호출
-    const response = await apiClient.get("/naverNewsList", {
+    const response = await apiClient.get("/common/naverNewsList", {
       params: {
         companyNo, // 회사고유번호
         count, // 반환할 데이터 개수
