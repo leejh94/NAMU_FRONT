@@ -1,0 +1,22 @@
+// src/layout/Footer.scss
+@import "../App.scss";
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: $background-color;
+  color: $text-color;
+  width: 100%;
+  max-width: 1920px;
+
+  &__info,
+  &__contact p {
+    font-size: 1rem;
+    color: #666;
+    @media (max-width: 768px) {
+      font-size: 0.6rem;
+    }
+  }
+}

@@ -1,0 +1,154 @@
+// src/pages/Search.scss
+@font-face {
+  font-family: "Maplestory Bold";
+  src: url("../../assets/fonts/Maplestory Bold.ttf") format("truetype");
+}
+
+.search-page {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: 1000px) {
+    padding: 0;
+  }
+}
+
+h2 {
+}
+
+.search-bar {
+  padding-top: 20px;
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  max-width: 800px;
+  margin-bottom: 0;
+  align-items: center; // 수직 정렬
+}
+
+.search-dropdown {
+  width: 120px; // 드롭다운의 넓이 설정
+  border: 1px solid;
+  text-align: center;
+  padding: 10px;
+}
+
+.input-container {
+  position: relative;
+  flex-grow: 1; // 남은 공간을 자동으로 차지
+  display: flex;
+}
+
+.search-input {
+  width: 100%;
+  height: 50px;
+  border-color: #ccc;
+  font-size: 1rem;
+  font-family: "Maplestory Bold";
+  color: #000 !important; // 텍스트 색상을 강제 적용
+  background-color: #fff !important; // 배경색을 강제 적용
+  opacity: 1 !important;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.5); // 가벼운 그림자 효과 추가
+}
+
+.search-button {
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+}
+
+.suggestions-list {
+  position: absolute;
+  top: 100%; // 검색창 바로 아래에 위치
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  width: 100%; // input-container의 너비에 맞춤
+  max-height: 200px;
+  overflow-y: auto;
+  list-style-type: none;
+  z-index: 10;
+  scrollbar-width: thin; /* 크로스 브라우저 일관성을 위한 스크롤바 스타일 */
+}
+
+.suggestions-list li {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.suggestions-list li.highlight {
+  background-color: #e0e0e0; // 선택된 항목의 배경색 강조
+}
+
+.suggestions-list li:hover {
+  background-color: #f0f0f0;
+}
+
+.search-detail {
+  max-width: 800px;
+  width: 100%;
+  height: 100%;
+  border: 3px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #fafafa;
+  margin: 20px auto;
+  @media (max-width: 1000px) {
+    border: 0;
+    padding: 0;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+}
+
+.search-detail .p-tabview {
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.p-tabview-title {
+  font-size: 1.5rem;
+  @media (max-width: 728px) {
+    font-size: 0.9rem;
+  }
+}
+
+.search-detail .p-tabview-nav {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.4rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.search-detail .p-tabview-nav li {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.search-detail .p-tabview-nav li.p-highlight {
+  color: #007ad9; /* 활성 탭 색상 */
+  font-weight: bold;
+  border-bottom: 2px solid #007ad9; /* 활성 탭 밑줄 */
+}
+
+.search-detail .p-tabview-panel {
+  padding: 1.5rem;
+  font-size: 1rem;
+  background-color: #ffffff;
+  border-radius: 0 0 8px 8px;
+}
+
+.search-detail .p-tabview-nav li:not(.p-highlight):hover {
+  color: #555; /* 비활성 탭 hover 시 색상 */
+}

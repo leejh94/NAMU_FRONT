@@ -1,0 +1,100 @@
+@import "../../../App.scss";
+
+.sales-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.sales-info-card {
+  background-color: $card-background-color;
+  border-radius: $card-border-radius;
+  border: 1px solid $card-border-color;
+  padding: 1rem;
+  box-shadow: $card-box-shadow;
+
+  h4 {
+    color: $card-h4-color;
+    font-size: $card-h4-font-size;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .sales-info-summary-wrap {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+
+    @media (max-width: 768px) {
+      flex-direction: column; // 화면이 작아지면 세로로 배치
+    }
+  }
+
+  .sales-info-summary {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-around;
+    padding: 1rem;
+    background-color: $card-background-color;
+    border-radius: $card-border-radius;
+    border: 1px solid $card-border-color;
+
+    @media (max-width: 768px) {
+      width: 100%; // 작은 화면에서는 전체 너비 사용
+    }
+
+    .sales-info-box {
+      text-align: center;
+
+      p:first-child {
+        padding-bottom: 10px;
+        font-weight: bold;
+        color: $card-label-color;
+      }
+
+      p:last-child {
+        font-size: 1.25rem;
+        color: $card-cost-value-color;
+      }
+    }
+  }
+
+  .sales-charts {
+    display: flex;
+    gap: 20px; // 그래프 간격
+    justify-content: space-around;
+    .p-chart {
+      width: 50%; // 가로로 나란히 배치
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column; // 작은 화면에서는 차트를 세로로 배치
+      .p-chart {
+        width: 100%; // 가로로 나란히 배치
+        height: 250px; // 작은 화면에서는 차트 높이 조정
+      }
+    }
+  }
+
+  .sales-info-details {
+    border-radius: $card-border-radius;
+    border: 1px solid $card-border-color;
+    margin-top: 1rem;
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        font-size: $card-item-font-size;
+        color: $card-h4-color;
+        margin: 0.5rem 0;
+        position: relative;
+      }
+    }
+  }
+}

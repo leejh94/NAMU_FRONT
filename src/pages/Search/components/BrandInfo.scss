@@ -1,0 +1,126 @@
+@import "../../../App.scss";
+
+.brand-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.brand-info-card {
+  background-color: $card-background-color;
+  border-radius: $card-border-radius;
+  border: 1px solid $card-border-color;
+  padding: 1rem;
+  box-shadow: $card-box-shadow;
+
+  h4 {
+    margin-bottom: 1rem;
+    color: $card-h4-color;
+    font-size: $card-h4-font-size;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .brand-info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid $card-border-color;
+
+    .brand-info-label {
+      font-weight: bold;
+      color: $card-label-color;
+    }
+
+    .brand-info-value {
+      text-align: right;
+      color: $card-h4-color;
+    }
+
+    .highlight {
+      color: $card-highlight-color;
+      font-weight: bold;
+    }
+  }
+
+  .brand-info-image {
+    display: flex;
+    justify-content: flex-end;
+    img {
+      border-radius: 8px;
+      border: 1px solid $card-border-color;
+      box-shadow: $card-box-shadow;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      @media (max-width: 768px) {
+        width: 130px;
+        height: 130px;
+      }
+    }
+  }
+
+  .news-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    @media (max-width: 768px) {
+      display: block;
+    }
+
+    .news-card {
+      width: calc(33.33% - 1rem);
+      background-color: #ffffff;
+      border: 1px solid $card-border-color;
+      border-radius: $card-border-radius;
+      padding: 0.8rem;
+      box-shadow: $card-shadow-color;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      @media (max-width: 768px) {
+        width: 100%;
+        gap: 1rem;
+      }
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: $card-box-shadow-hover;
+      }
+
+      .news-title {
+        font-size: $card-item-font-size;
+        font-weight: bold;
+        margin: 0.3rem 0;
+        color: $card-h4-color;
+      }
+
+      .news-description {
+        font-size: $card-description-font-size;
+        color: $card-label-color;
+        margin: 0.5rem 0;
+      }
+
+      .news-date {
+        font-size: $card-date-font-size;
+        color: $card-label-color;
+        text-align: right;
+        margin-top: auto;
+      }
+    }
+  }
+
+  .news-empty {
+    text-align: center;
+    font-size: $card-date-font-size;
+    color: $card-label-color;
+    padding: 20px;
+    border: 1px solid $card-border-color;
+    border-radius: $card-border-radius;
+    background-color: $card-background-color;
+    margin-top: 10px;
+  }
+}

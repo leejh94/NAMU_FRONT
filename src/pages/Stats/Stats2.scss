@@ -1,0 +1,177 @@
+// src/pages/Stats/Stats.scss
+@import "../../App.scss";
+
+.stats-page {
+  width: 100%;
+  margin: 0 auto;
+  font-size: 1.1rem;
+
+  .p-panel-header {
+    padding: 12px 8px;
+    background-color: $card-background-color;
+    border: 2px solid $card-border-color;
+    border-radius: 4px;
+  }
+  // 패널 제목
+  .p-panel-title {
+    font-size: 1.2rem;
+    color: $card-h4-color;
+  }
+
+  // 페이지 제목 부분
+  .stats-title {
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    display: flex;
+    gap: 100px;
+    background-color: $card-background-color;
+    border-radius: 5px;
+    border: 2px solid $card-border-color;
+
+    // 제목 글씨
+    span {
+      font-size: 1.5rem;
+      color: $card-h4-color;
+    }
+    .stats-title-select {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+
+      // 셀렉트 태그 태두리
+      .stats-dropdown {
+        background-color: $card-background-color;
+        border: 1px solid $border-color;
+        width: 200px;
+        height: 25px;
+        font-size: 2rem;
+      }
+      // 셀렉트 태그 안 글씨
+      span {
+        font-size: 1.2rem;
+        text-align: center;
+        color: $card-h4-color;
+      }
+    }
+  }
+
+  .stats-content1 {
+    width: 100%;
+    height: 300px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+
+    .content1-box {
+      width: 20%;
+      height: 100%;
+      padding: 10px;
+      margin: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      align-content: center;
+      background-color: #fff;
+
+      .content1-box1-section,
+      .content1-box2-section {
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+
+        .box1-title-div,
+        .box2-title-div {
+          display: flex;
+          padding: 10px;
+        }
+
+        .box1-title-span,
+        .box2-title-span {
+          font-size: 1.2rem;
+          color: #495057;
+        }
+        .box1-value-span,
+        .box2-value-span {
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: $text-color;
+          margin: 5px 0;
+        }
+        .comparison {
+          font-size: 0.9rem;
+        }
+      }
+      .content1-box1-section {
+        border-bottom: 1px solid $border-color;
+      }
+    }
+    .content1-graph {
+      width: 100%;
+      height: 300px; // 고정된 높이 설정
+      .p-chart {
+        width: 100%;
+        height: 230px;
+        font-family: "Maplestory Bold";
+      }
+    }
+  }
+
+  .stats-content2 {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+
+    .content2-table1,
+    .content2-table2 {
+      width: 50%;
+      padding: 0 10px;
+
+      .p-datatable-custom {
+        font-size: 1rem;
+        width: 100%;
+        padding: 1rem;
+
+        button {
+          font-family: "Maplestory Bold";
+        }
+        .p-column-title {
+          text-align: center;
+          font-weight: bold;
+          color: $text-color;
+        }
+
+        .p-datatable-thead > tr > th {
+          background-color: $card-background-color;
+          color: $card-h4-color;
+        }
+
+        .p-datatable-thead > tr > th,
+        .p-datatable-tbody > tr > td {
+          width: 20%;
+          padding: 8px 12px;
+
+          &:first-child {
+            width: 45%;
+          }
+          &:last-child {
+            width: 15%;
+          }
+        }
+
+        .p-datatable-tbody > tr > td {
+          &:first-child {
+            text-decoration: underline;
+            // color: $primary-color;
+          }
+        }
+
+        .p-datatable-tbody > tr:nth-child(odd) > td {
+          background-color: $card-border-color;
+        }
+        .p-datatable-tbody > tr:nth-child(even) > td {
+          background-color: $card-background-color;
+        }
+      }
+    }
+  }
+}

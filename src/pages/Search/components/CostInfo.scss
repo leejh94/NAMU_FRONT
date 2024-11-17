@@ -1,0 +1,88 @@
+@import "../../../App.scss";
+
+.cost-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.cost-info-card {
+  background-color: $card-background-color;
+  border-radius: $card-border-radius;
+  border: 1px solid $card-border-color;
+  padding: 1rem;
+  box-shadow: $card-box-shadow;
+
+  h4 {
+    color: $card-h4-color;
+    font-size: $card-h4-font-size;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .cost-info-details {
+    .cost-info-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      font-size: $card-item-font-size;
+      color: $card-label-color;
+    }
+
+    .total {
+      font-weight: bold;
+      border-top: 1px solid $card-border-color;
+      padding-top: 10px;
+      margin-top: 10px;
+      color: $card-h4-color;
+    }
+
+    .cost-label {
+      font-weight: bold;
+    }
+
+    .cost-value {
+      color: $card-cost-value-color;
+    }
+  }
+
+  .map-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .map-svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .label-box {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
+    padding: 4px;
+    font-size: 12px;
+    text-align: center;
+    box-shadow: $card-shadow-color;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+
+    .locale-name {
+      font-weight: bold;
+    }
+
+    .store-count {
+      display: block;
+      color: $card-label-color;
+    }
+  }
+
+  @media (max-width: 728px) {
+    .label-box {
+      font-size: 8px;
+    }
+  }
+}
