@@ -41,6 +41,12 @@ function Header() {
         >
           사이트 소개
         </Link>
+        <Link
+          to="/login"
+          className={location.pathname === "/login" ? "active" : ""}
+        >
+          로그인
+        </Link>
       </nav>
 
       {/* 작은 화면에서만 보이는 커스텀 햄버거 버튼 */}
@@ -97,6 +103,13 @@ function Header() {
             className={location.pathname === "/info" ? "active" : ""}
           >
             <span className="icon pi pi-info-circle"></span> 사이트 소개
+          </Link>
+          <Link
+            to="/login"
+            onClick={() => setIsSidebarVisible(false)}
+            className={location.pathname === "/login" ? "active" : ""}
+          >
+            <span className="icon pi pi-info-circle"></span> 로그인
           </Link>
         </nav>
       </Sidebar>

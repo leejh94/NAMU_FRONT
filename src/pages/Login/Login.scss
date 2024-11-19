@@ -1,0 +1,36 @@
+// src/pages/Login/Login.scss
+@import "../../App.scss";
+
+.login-page {
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+  background-color: $background-color; // 영역 확인용
+
+  .login-card {
+    background-color: $card-background-color;
+    border-radius: $card-border-radius;
+    border: 1px solid $card-border-color;
+    padding: 1rem;
+    box-shadow: $card-box-shadow;
+
+    h4 {
+      margin-bottom: 1rem;
+      color: $card-h4-color;
+      font-size: $card-h4-font-size;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .login-item {
+      display: flex;
+      justify-content: center;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid $card-border-color;
+
+      img {
+        cursor: pointer;
+      }
+    }
+  }
+}
