@@ -1,0 +1,18 @@
+//src/components/LoadingSpinner.scss
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* 다른 UI 위에 표시 */
+}
+
+.loading-spinner {
+  width: 100px; /* GIF 크기 */
+  height: 100px;
+}
