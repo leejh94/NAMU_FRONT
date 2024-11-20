@@ -1,0 +1,127 @@
+// src/layout/Header.scss
+@import "../App.scss";
+
+.header {
+  display: flex;
+  max-width: 1920px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: $background-color;
+
+  &__logo img {
+    width: 150px;
+  }
+
+  &__nav--large {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    // 메뉴 아이콘
+    a {
+      border: 2px solid $card-border-color;
+      border-radius: 20%;
+      padding: 10px;
+      &:hover {
+        border: 2px solid $secondary-color;
+        background-color: $secondary-color;
+        color: #fff;
+        span {
+          color: #fff;
+        }
+      }
+      span {
+        color: $text-color;
+        font-size: 30px;
+        @media (max-width: 1000px) {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  &__menu-toggle {
+    padding: 10px;
+    font-size: 30px;
+    border: 2px solid $card-border-color;
+    border-radius: 20%;
+    cursor: pointer;
+    color: $text-color;
+    &:hover {
+      border: 2px solid $secondary-color;
+      background-color: $secondary-color;
+      color: #fff;
+    }
+    @media (max-width: 1000px) {
+      font-size: 20px;
+    }
+  }
+}
+
+.sidebar {
+  background-color: $background-color; // 기본 배경색 설정
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  .p-sidebar-header {
+    background-color: $primary-color; // 상단 배경색 설정
+  }
+  .sidebar__header {
+    background-color: $primary-color; // 상단 배경색 설정
+    // color: white;
+    padding: 20px;
+    text-align: center;
+    padding-top: 0;
+    .logo {
+      width: 250px;
+      height: 150px;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      font-size: 0.9rem;
+      color: #e0e0e0;
+    }
+  }
+
+  .sidebar__nav {
+    padding: 20px 0;
+
+    a {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      gap: 15px;
+
+      &:hover {
+        background-color: $secondary-color;
+        border-radius: 5px;
+      }
+
+      &.active {
+        background-color: $primary-color;
+        color: white;
+        border-radius: 5px;
+      }
+
+      .icon {
+        font-size: 1.2rem;
+      }
+
+      .badge {
+        background-color: red;
+        color: white;
+        font-size: 0.8rem;
+        padding: 2px 6px;
+        border-radius: 10px;
+        margin-left: auto;
+      }
+    }
+  }
+}

@@ -1,12 +1,12 @@
 // src/layout/Layout.js
 import React from "react";
-import Header from "./Header";
+import Header from "./Header2";
 import Footer from "./Footer";
 import "./Layout.scss"; // SCSS 파일 import
 
 function Layout({ children }) {
   return (
-    <div className="layout">
+    <div className="layout custom-scrollbar">
       <div className="layout__header">
         <Header />
       </div>

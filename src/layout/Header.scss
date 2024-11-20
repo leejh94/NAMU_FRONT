@@ -1,32 +1,4 @@
 // src/layout/Header.scss
-// .header {
-//   display: flex;
-//   max-width: 1920px;
-//   width: 100%;
-//   align-items: center;
-//   justify-content: space-between;
-//   padding: 20px;
-//   background-color: #fff;
-
-//   &__logo img {
-//     width: 150px; // 로고 크기 조절
-//   }
-
-//   &__nav {
-//     display: flex;
-//     gap: 20px;
-//   }
-
-//   &__nav a {
-//     color: #333;
-//     text-decoration: none;
-//     font-weight: bold;
-
-//     &:hover {
-//       color: #007bff; // 호버 시 색상 변경
-//     }
-//   }
-// }
 @import "../App.scss";
 
 .header {
