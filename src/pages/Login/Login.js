@@ -2,13 +2,17 @@
 import React from "react";
 import "./Login.scss";
 import kakaoLoginImage from "../../assets/kakao_login_large_wide.png";
-import { useLogin } from "../../hooks/useLogin";
 
 function Login() {
-  const { handleKakaoLogin } = useLogin();
+  // 환경별 redirect_uri 설정
+  // npm start = development / npm run build = production
+  const redirectUri =
+    process.env.NODE_ENV === "production"
+      ? "http://jaehoon.site/auth/login/callback" // 배포 환경
+      : "http://localhost:3000/auth/login/callback"; // 로컬 환경
 
   const onKakaoLoginClick = () => {
-    const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=3a7e59018561c06437688195b7fb9377&redirect_uri=http://localhost:3000/auth/login/callback&response_type=code`;
+    const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=3a7e59018561c06437688195b7fb9377&redirect_uri=${redirectUri}&response_type=code`;
     window.location.href = kakaoAuthUrl;
   };
 

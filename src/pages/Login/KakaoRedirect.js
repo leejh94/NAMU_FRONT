@@ -9,7 +9,6 @@ function KakaoRedirect() {
   const processLogin = useCallback(() => {
     const queryParams = new URLSearchParams(window.location.search);
     const code = queryParams.get("code");
-    console.log(code);
 
     if (code) {
       handleKakaoLogin(code);
@@ -21,7 +20,7 @@ function KakaoRedirect() {
     processLogin();
   }, [processLogin]);
 
-  return <div>로그인 처리 중...</div>;
+  return <div></div>;
 }
 
 export default KakaoRedirect;
