@@ -1,5 +1,5 @@
 // src/service/searchApi.js
-import apiClient from "./axiosConfig"; // 백엔드 api 호출시 사용
+import { apiClient } from "./axiosConfig";
 
 // 회사명 목록을 가져오는 API 호출 함수
 export const getCompanyNameList = async (searchType, searchWord) => {

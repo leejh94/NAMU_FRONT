@@ -1,5 +1,5 @@
 // src/service/statsApi.js
-import apiClient from "./axiosConfig";
+import { apiClient } from "./axiosConfig";
 
 // 통계 페이지에서 사용 매출 상위 가게 정보
 export const getTopStoresBySales = async (region, industry, limit) => {

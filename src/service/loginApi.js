@@ -1,5 +1,5 @@
 // src/service/loginApi.js
-import apiClient from "./axiosConfig";
+import { apiClient } from "./axiosConfig";
 
 export const authLogin = async (provider, code) => {
   try {
