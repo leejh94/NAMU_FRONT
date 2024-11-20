@@ -31,6 +31,8 @@ npm install react-simple-maps d3-geo
 
 npm install xml2js
 
+npm install js-cookie
+
 
 ```
 
