@@ -8,8 +8,8 @@ function Login() {
   // npm start = development / npm run build = production
   const redirectUri =
     process.env.NODE_ENV === "production"
-      ? "http://jaehoon.site/auth/login/callback" // 배포 환경
-      : "http://localhost:3000/auth/login/callback"; // 로컬 환경
+      ? "http://jaehoon.site/api/auth/login/callback" // 배포 환경
+      : "http://localhost:3000/api/auth/login/callback"; // 로컬 환경
 
   const onKakaoLoginClick = () => {
     const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=3a7e59018561c06437688195b7fb9377&redirect_uri=${redirectUri}&response_type=code`;
