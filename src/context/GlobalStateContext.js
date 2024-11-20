@@ -8,6 +8,7 @@ export const GlobalStateProvider = ({ children }) => {
   const [globalState, setGlobalState] = useState({
     isLoading: false, // 로딩 상태
     isLoggedIn: false, // 로그인 여부
+    nickName: "", // 닉네임
   });
 
   // 전역 상태 업데이트 함수
