@@ -29,7 +29,10 @@ function App() {
             <Route path="/Stats" element={<Stats />} />
             <Route path="/Stats2" element={<Stats2 />} />
             <Route path="/Login" element={<Login />} />
-            <Route path="/auth/login/callback" element={<KakaoRedirect />} />
+            <Route
+              path="/api/auth/login/callback"
+              element={<KakaoRedirect />}
+            />
           </Routes>
         </Layout>
       </Router>
