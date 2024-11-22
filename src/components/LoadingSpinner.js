@@ -1,7 +1,7 @@
 //src/components/LoadingSpinner.js
 import React from "react";
 import { useGlobalState } from "../context/GlobalStateContext";
-import loadingGif from "../assets/loading1.gif";
+import loadingGif from "../assets/loading.gif";
 import "./LoadingSpinner.scss";
 
 const LoadingSpinner = () => {
