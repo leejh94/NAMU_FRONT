@@ -17,6 +17,7 @@ export function useHelpInfo() {
       }
     };
     fetchSiteList();
+    alert("현재 작업 중인 페이지 입니다.");
   }, []); // 최초 로드 시에만 호출
 
   return { siteList };
