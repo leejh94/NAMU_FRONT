@@ -2,7 +2,6 @@
 import axios from "axios";
 
 // 공통 설정
-// npm start = development / npm run build = production
 const baseURL =
   process.env.NODE_ENV === "production"
     ? "http://jaehoon.site/api" // 배포용 URL
@@ -11,13 +10,19 @@ const baseURL =
 // 비회원용 API 클라이언트
 const apiClient = axios.create({
   baseURL, // 공통 URL 사용
-  timeout: 5000, // 요청 제한 시간 설정
+  timeout: 50000, // 요청 제한 시간 설정 50초
+  headers: {
+    "Content-Type": "application/json", // JSON 요청을 위한 기본 Content-Type
+  },
 });
 
 // 회원용 API 클라이언트
 const authApiClient = axios.create({
   baseURL, // 공통 URL 사용
-  timeout: 5000, // 요청 제한 시간 설정
+  timeout: 50000, // 요청 제한 시간 설정 50초
+  headers: {
+    "Content-Type": "application/json", // JSON 요청을 위한 기본 Content-Type
+  },
 });
 
 // 쿠키에서 JWT 토큰 가져오기 함수
