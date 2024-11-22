@@ -6,8 +6,10 @@ import {
   getLowestFranchiseFeeStores,
   getIndustryNewOpeningsCount,
 } from "../service/statsApi";
+import { useGlobalState } from "../context/GlobalStateContext";
 
 export function useStats() {
+  const { updateGlobalState } = useGlobalState(); // 글로벌 상태 업데이트 함수
   // 상태 값
   const [topSales, setTopSales] = useState([]);
   const [avgSalesInfo, setAvgSalesInfo] = useState([]);
@@ -23,10 +25,13 @@ export function useStats() {
   useEffect(() => {
     const fetchTopSales = async () => {
       try {
+        updateGlobalState("isLoading", true);
         const response = await getTopStoresBySales(region, industry, limit);
         setTopSales(response.data);
       } catch (error) {
         console.error("매출 상위 매장 데이터 로드 오류:", error);
+      } finally {
+        updateGlobalState("isLoading", false);
       }
     };
     fetchTopSales();
@@ -36,10 +41,13 @@ export function useStats() {
   useEffect(() => {
     const fetchAvgSalesInfo = async () => {
       try {
+        updateGlobalState("isLoading", true);
         const response = await getIndustryAvgSalesInfo(region);
         setAvgSalesInfo(response.data);
       } catch (error) {
         console.error("업종별 매출 평균 데이터 로드 오류:", error);
+      } finally {
+        updateGlobalState("isLoading", false);
       }
     };
     fetchAvgSalesInfo();
