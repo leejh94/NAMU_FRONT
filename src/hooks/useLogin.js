@@ -30,8 +30,6 @@ export function useLogin() {
         const jwtToken = data.data.jwtToken;
         Cookies.set("jwt", jwtToken, {
           expires: 1 / 24,
-          secure: true,
-          sameSite: "Strict",
         });
 
         // 로그인 성공 시 페이지 이동
@@ -66,8 +64,6 @@ export function useLogin() {
         const jwtToken = data.data.jwtToken;
         Cookies.set("jwt", jwtToken, {
           expires: 1 / 24,
-          secure: true,
-          sameSite: "Strict",
         });
 
         navigate("/");
