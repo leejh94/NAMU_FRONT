@@ -3,14 +3,15 @@
   width: 100%;
   height: 100%;
   max-width: 700px;
-  max-height: 700px;
+  max-height: 500px;
   margin: 10px;
+  padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
   border-radius: 30px;
   overflow: hidden;
   border: 2px solid #ccc;
   cursor: pointer; // 손가락 모양 커서
+  text-align: center;
 
   // 마우스를 올렸을 때 스타일
   &:hover {
@@ -20,24 +21,17 @@
 
   .custom-card__image {
     width: 100%;
-    height: 400px;
+    height: 300px;
     object-fit: cover;
   }
 
   @media (max-width: 768px) {
     max-width: 90%; // 작은 화면에서 카드 크기를 조정
-    height: 400px;
     .custom-card__image {
-      height: 200px; // 이미지 크기 줄이기
+      height: 150px; // 이미지 크기 줄이기
     }
   }
 
-  @media (max-width: 630px) {
-    max-width: 100%; // 더 작은 화면에서 카드 너비를 화면에 맞춤
-    .custom-card__image {
-      height: 150px; // 이미지 높이 추가로 줄이기
-    }
-  }
   .custom-card__footer {
     display: flex;
     justify-content: center;
@@ -49,12 +43,18 @@
     font-size: 2.5rem;
     font-weight: bold;
     color: #333;
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+    }
   }
 
   .p-card-subtitle {
     font-size: 1.5em;
     color: #666;
     margin-bottom: 1rem;
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
   }
 
   .p-card-content {
@@ -62,6 +62,9 @@
     color: #333;
     line-height: 1.5;
     padding: 0 1rem 1rem 1rem;
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
   }
 }
 @font-face {
