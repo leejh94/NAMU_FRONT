@@ -9,6 +9,7 @@ export const GlobalStateProvider = ({ children }) => {
     isLoading: false, // 로딩 상태
     isLoggedIn: false, // 로그인 여부
     nickName: "", // 닉네임
+    role: "",
   });
 
   // 전역 상태 업데이트 함수
