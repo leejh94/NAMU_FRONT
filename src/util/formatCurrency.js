@@ -1,6 +1,10 @@
 // src/util/formatCurrency.js
-
 export function formatCurrency(value) {
+  // 값이 undefined나 null이면 0으로 처리
+  if (value === undefined || value === null) {
+    value = 0;
+  }
+
   if (value >= 100000000) {
     // 억과 만 단위 계산
     const billions = Math.floor(value / 100000000); // 억 단위
