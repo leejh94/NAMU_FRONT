@@ -8,8 +8,11 @@ import {
   getFranchiseFee,
   getNaverNewsList,
 } from "../service/searchApi";
+import { useGlobalState } from "../context/GlobalStateContext";
 
 export function useSearch() {
+  const { updateGlobalState } = useGlobalState(); // 글로벌 상태 업데이트 함수
+
   const [searchType, setSearchType] = useState("brand");
   const [searchWord, setSearchWord] = useState("");
   const [companyNo, setCompanyNo] = useState("");
@@ -62,6 +65,8 @@ export function useSearch() {
   // API 데이터 로딩
   const fetchTabData = async (tab, companyNo) => {
     try {
+      updateGlobalState("isLoading", true);
+
       let data;
       if (tab === "sales") {
         data = await getCompanySalesInfo(companyNo, salesInfoRegion);
@@ -79,6 +84,8 @@ export function useSearch() {
       }
     } catch (error) {
       console.error(`API 오류 (${tab}):`, error);
+    } finally {
+      updateGlobalState("isLoading", false);
     }
   };
 
