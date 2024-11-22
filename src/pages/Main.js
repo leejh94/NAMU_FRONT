@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./Main.scss";
 import firstImage from "../assets/ani_01.gif";
 import secondImage from "../assets/graph.gif";
+import fixImage from "../assets/fix.gif";
 import CustomCard from "../components/CustomCard";
 
 function Main() {
@@ -28,6 +29,22 @@ function Main() {
           buttonLabel="바로 가기"
           onButtonClick={() => navigate("/stats")}
         />
+        {/* <CustomCard
+          title="창업 지원 정보"
+          subTitle="제작 중인 페이지 입니다!"
+          image={fixImage}
+          content="나라에서 지원하는 창업 지원 정보를 확인하세요"
+          buttonLabel="바로 가기"
+          onButtonClick={() => alert("현재 개발 중인 페이지 입니다.")}
+        />
+        <CustomCard
+          title="회원 게시판"
+          subTitle="제작 중인 페이지 입니다!"
+          image={fixImage}
+          content="자유롭게 글을 작성하세요"
+          buttonLabel="바로 가기"
+          onButtonClick={() => alert("현재 개발 중인 페이지 입니다.")}
+        /> */}
       </div>
     </div>
   );
