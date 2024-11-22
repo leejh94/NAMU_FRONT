@@ -1,17 +1,34 @@
-// src/pages/HelpInfo/HelpInfo.js
+// // src/pages/HelpInfo/HelpInfo.js
 import React, { useState } from "react";
 import { useGlobalState } from "../../context/GlobalStateContext";
+import { useHelpInfo } from "../../hooks/useHelpInfo";
 import { Dropdown } from "primereact/dropdown";
 import { Panel } from "primereact/panel";
 import { Carousel } from "primereact/carousel";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import { Dialog } from "primereact/dialog";
+import { InputText } from "primereact/inputtext";
+import { InputTextarea } from "primereact/inputtextarea";
+import { Button } from "primereact/button";
+import { siteAdd } from "../../service/helpInfoApi";
 import "./HelpInfo.scss";
 
 function HelpInfo() {
-  const { globalState } = useGlobalState(); // 글로벌 상태 및 업데이트 함수
+  const { globalState } = useGlobalState();
+  const { siteList } = useHelpInfo();
 
-  // globalState.role : 권한
+  // 팝업 관련 상태
+  const [showDialog, setShowDialog] = useState(false);
+  const [formData, setFormData] = useState({
+    img: "",
+    link: "",
+    title: "",
+    description: "",
+  });
+  const [fileError, setFileError] = useState("");
+
+  // 지역 선택 옵션
   const regionOptions = [
     { label: "지역전체", value: "전체" },
     { label: "서울", value: "서울" },
@@ -33,40 +50,76 @@ function HelpInfo() {
     { label: "제주", value: "제주" },
   ];
 
-  const [products, setProducts] = useState([
-    { name: "1111", price: "1212" },
-    { name: "2222", price: "1212" },
-    { name: "3333", price: "1212" },
-    { name: "4444", price: "1212" },
-    { name: "5555", price: "1212" },
-  ]);
-  const productTemplate = (product) => {
+  // 파일 업로드 처리
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setFormData({ ...formData, img: reader.result });
+    };
+
+    reader.onerror = () => {
+      setFileError("파일 업로드에 실패했습니다.");
+    };
+
+    reader.readAsDataURL(file); // 파일을 Base64로 변환
+  };
+
+  // 입력값 변경 처리
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // 사이트 추가 처리
+  const handleAddSite = async () => {
+    try {
+      const base64Image = formData.img.replace(/^data:image\/\w+;base64,/, ""); // Base64 인코딩 제거
+
+      let data = await siteAdd(
+        base64Image,
+        formData.link,
+        formData.title,
+        formData.description
+      ); // link 추가
+
+      if (data.code === 200) {
+        alert("사이트가 성공적으로 추가되었습니다.");
+      } else {
+        alert("사이트 추가 중 오류가 발생했습니다.");
+      }
+    } catch (error) {
+      console.error("사이트 추가 실패:", error);
+      alert("사이트 추가 중 오류가 발생했습니다.");
+    } finally {
+      setShowDialog(false); // 팝업 닫기
+    }
+  };
+
+  const siteTemplate = (siteList) => {
     return (
-      <div className="border-1 surface-border border-round m-2 text-center py-5 px-3">
-        <div className="mb-3">
-          <img
-            src={`https://i.ibb.co/QfCjzFd/no-Profile.jpg`}
-            alt={product.name}
-            className="w-6 shadow-2"
-          />
-        </div>
-        <div>
-          <h4 className="mb-1">{product.name}</h4>
-          <h6 className="mt-0 mb-3">${product.price}</h6>
-        </div>
+      <div className="carousel-card">
+        <img
+          src={siteList.imgLink}
+          alt={siteList.siteName}
+          className="carousel-img"
+        />
+        <h4 className="carousel-title">{siteList.siteName}</h4>
+        <p className="carousel-description">{siteList.siteDescription}</p>
       </div>
     );
   };
 
   return (
-    <div className="stats-container">
-      <div className="stats-header card">
+    <div className="helpInfo-container">
+      <div className="helpInfo-header card">
         <span className="header-title">창업 지원 정보</span>
         <div className="header-selects">
           <Dropdown
-            // value={region}
             options={regionOptions}
-            // onChange={(e) => setRegion(e.value)}
             placeholder="지역 선택"
             className="dropdown"
           />
@@ -74,16 +127,21 @@ function HelpInfo() {
       </div>
       <div className="table-card card">
         <Panel header="유용한 사이트" toggleable className="table-panel">
-          <button>추가</button>
-          <button>삭제</button>
+          {globalState.role === "ADMIN" && (
+            <Button
+              label="추가"
+              icon="pi pi-plus"
+              onClick={() => setShowDialog(true)}
+            />
+          )}
           <Carousel
-            value={products}
+            value={siteList}
             numVisible={3}
             numScroll={3}
             className="custom-carousel"
             circular
             autoplayInterval={3000}
-            itemTemplate={productTemplate}
+            itemTemplate={siteTemplate}
           />
         </Panel>
       </div>
@@ -94,12 +152,7 @@ function HelpInfo() {
               field="store_name"
               header="지역"
               body={(rowData) => (
-                <span
-                  className="store-link"
-                  //   onClick={() => handleStoreNameClick(rowData.store_name)}
-                >
-                  {rowData.store_name}
-                </span>
+                <span className="store-link">{rowData.store_name}</span>
               )}
             />
             <Column field="avg_monthly_sales" header="제목" />
@@ -108,6 +161,60 @@ function HelpInfo() {
           </DataTable>
         </Panel>
       </div>
+
+      {/* 팝업창 */}
+      <Dialog
+        header="사이트 추가"
+        visible={showDialog}
+        style={{ width: "400px" }}
+        onHide={() => setShowDialog(false)}
+      >
+        <div className="p-field">
+          <label htmlFor="img">이미지 업로드</label>
+          <input type="file" accept="image/*" onChange={handleFileUpload} />
+          {fileError && <small className="p-error">{fileError}</small>}
+        </div>
+        <div className="p-field">
+          <label htmlFor="title">제목</label>
+          <InputText
+            id="title"
+            name="title"
+            value={formData.title}
+            onChange={handleInputChange}
+            placeholder="제목 입력"
+          />
+        </div>
+        <div className="p-field">
+          <label htmlFor="link">링크</label>
+          <InputText
+            id="link"
+            name="link"
+            value={formData.link}
+            onChange={handleInputChange}
+            placeholder="링크 입력"
+          />
+        </div>
+        <div className="p-field">
+          <label htmlFor="description">내용</label>
+          <InputTextarea
+            id="description"
+            name="description"
+            value={formData.description}
+            onChange={handleInputChange}
+            placeholder="내용 입력"
+            rows={5}
+          />
+        </div>
+        <div className="dialog-footer">
+          <Button label="추가" icon="pi pi-check" onClick={handleAddSite} />
+          <Button
+            label="취소"
+            icon="pi pi-times"
+            className="p-button-secondary"
+            onClick={() => setShowDialog(false)}
+          />
+        </div>
+      </Dialog>
     </div>
   );
 }
