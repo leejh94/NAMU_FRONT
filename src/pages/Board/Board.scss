@@ -1,0 +1,92 @@
+@import "../../App.scss";
+
+.board-page {
+  width: 100%;
+
+  .board-card {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: $card-background-color;
+    box-shadow: $card-box-shadow;
+    font-size: 1.2rem;
+    border-radius: $card-border-radius;
+    border: 1px solid $card-border-color;
+
+    h4 {
+      color: $card-h4-color;
+      font-size: $card-h4-font-size;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .table {
+      .store-link {
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      button {
+        font-family: "Maplestory Bold";
+      }
+
+      .p-column-title {
+        text-align: center;
+        font-weight: bold;
+        color: $text-color;
+      }
+
+      .p-datatable-thead > tr > th {
+        background-color: $card-background-color;
+        color: $card-h4-color;
+        padding: 10px;
+        @media (max-width: 768px) {
+          font-size: 0.5rem;
+        }
+      }
+
+      .p-datatable-tbody > tr > td {
+        width: 20%;
+        padding: 8px 12px;
+        font-size: 1rem;
+        color: $text-color;
+
+        @media (max-width: 768px) {
+          font-size: 0.5rem;
+        }
+
+        &:first-child {
+          width: 45%;
+          text-decoration: underline;
+          color: $primary-color;
+        }
+
+        &:last-child {
+          width: 15%;
+        }
+      }
+
+      .p-datatable-tbody > tr:nth-child(odd) > td {
+        background-color: $card-border-color;
+      }
+
+      .p-datatable-tbody > tr:nth-child(even) > td {
+        background-color: $card-background-color;
+      }
+    }
+
+    .p-paginator-bottom {
+      @media (max-width: 768px) {
+      }
+      .p-paginator-element {
+        @media (max-width: 768px) {
+          padding: 0rem;
+          font-size: 0.6rem;
+        }
+      }
+    }
+  }
+}
