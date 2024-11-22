@@ -4,7 +4,7 @@ import { apiClient } from "./axiosConfig";
 // 통계 페이지에서 사용 매출 상위 가게 정보
 export const getTopStoresBySales = async (region, industry, limit) => {
   try {
-    const response = await apiClient.get("/common/topStoresBySales", {
+    const response = await apiClient.get("/stats/topStoresBySales", {
       params: {
         region,
         industry,
@@ -21,7 +21,7 @@ export const getTopStoresBySales = async (region, industry, limit) => {
 // 통계 페이지에서 사용 업종별 매출 평균 및 신규 오픈매장 수 (15개)
 export const getIndustryAvgSalesInfo = async (region) => {
   try {
-    const response = await apiClient.get("/common/industryAvgSalesInfo", {
+    const response = await apiClient.get("/stats/industryAvgSalesInfo", {
       params: {
         region,
       },
@@ -37,7 +37,7 @@ export const getIndustryAvgSalesInfo = async (region) => {
 // 통계 페이지에서 사용 가맹 부담금이 가장 낮고 월평균 매출이 있는 매장 목록
 export const getLowestFranchiseFeeStores = async (region, industry, limit) => {
   try {
-    const response = await apiClient.get("/common/lowestFranchiseFeeStores", {
+    const response = await apiClient.get("/stats/lowestFranchiseFeeStores", {
       params: {
         region,
         industry,
@@ -53,7 +53,7 @@ export const getLowestFranchiseFeeStores = async (region, industry, limit) => {
 
 export const getIndustryNewOpeningsCount = async () => {
   try {
-    const response = await apiClient.get("/common/industryNewOpeningsCount", {
+    const response = await apiClient.get("/stats/industryNewOpeningsCount", {
       params: {},
     });
     return response.data; // 서버로부터의 응답 데이터 반환
