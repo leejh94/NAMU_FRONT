@@ -1,8 +1,12 @@
 // src/pages/Main.js
-import React from "react";
+import React, { useEffect } from "react";
 import "./Board.scss";
 
 function Board() {
+  useEffect(() => {
+    alert("현재 제작 중인 페이지 입니다.");
+  }, []);
+
   return (
     <div className="board-page">
       <div className="board-card">

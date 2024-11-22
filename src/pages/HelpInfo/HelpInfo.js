@@ -53,15 +53,20 @@ function HelpInfo() {
   // 파일 업로드 처리
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
-    if (!file) return;
+    if (!file) {
+      console.error("No file selected");
+      return;
+    }
 
     const reader = new FileReader();
 
     reader.onload = () => {
+      console.log("FileReader Result:", reader.result);
       setFormData({ ...formData, img: reader.result });
     };
 
     reader.onerror = () => {
+      console.error("File upload failed");
       setFileError("파일 업로드에 실패했습니다.");
     };
 
@@ -79,19 +84,23 @@ function HelpInfo() {
     try {
       const base64Image = formData.img.replace(/^data:image\/\w+;base64,/, ""); // Base64 인코딩 제거
 
+      console.log("11111");
       let data = await siteAdd(
         base64Image,
         formData.link,
         formData.title,
         formData.description
-      ); // link 추가
+      );
+      console.log("22222");
 
       if (data.code === 200) {
         alert("사이트가 성공적으로 추가되었습니다.");
       } else {
+        console.log("33333");
         alert("사이트 추가 중 오류가 발생했습니다.");
       }
     } catch (error) {
+      console.log("44444");
       console.error("사이트 추가 실패:", error);
       alert("사이트 추가 중 오류가 발생했습니다.");
     } finally {
@@ -100,8 +109,18 @@ function HelpInfo() {
   };
 
   const siteTemplate = (siteList) => {
+    const handleCardClick = () => {
+      if (siteList.siteLink) {
+        window.open(siteList.siteLink, "_blank", "noopener,noreferrer");
+      }
+    };
+
     return (
-      <div className="carousel-card">
+      <div
+        className="carousel-card"
+        onClick={handleCardClick}
+        style={{ cursor: "pointer" }}
+      >
         <img
           src={siteList.imgLink}
           alt={siteList.siteName}
