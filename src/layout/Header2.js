@@ -19,6 +19,7 @@ function Header() {
     // 로그아웃 시 글로벌 상태 초기화
     updateGlobalState("isLoggedIn", false);
     updateGlobalState("nickName", "");
+    updateGlobalState("role", "");
   };
 
   return (
@@ -46,6 +47,18 @@ function Header() {
         >
           <span className="icon pi pi-chart-bar"></span>
         </Link>
+        <Link
+          to="/helpInfo"
+          className={location.pathname === "/helpInfo" ? "active" : ""}
+        >
+          <span className="icon pi pi-book"></span>
+        </Link>
+        <Link
+          to="/board"
+          className={location.pathname === "/board" ? "active" : ""}
+        >
+          <span className="icon pi pi-clipboard"></span>
+        </Link>
         <span
           className="header__menu-toggle icon pi pi-bars"
           onClick={() => setIsSidebarVisible(true)}
@@ -65,7 +78,18 @@ function Header() {
             alt="로고"
             className="logo"
           />
-          <div className="description">당신의 프랜차이즈 정보를 한눈에</div>
+
+          {globalState.isLoggedIn ? (
+            <div className="sidebar_userinfo">
+              {globalState.role === "ADMIN" && <span>(관리자)</span>}
+              {globalState.role === "USER" && <span>(일반회원)</span>}
+              <span>{globalState.nickName} 님 안녕하세요.</span>
+            </div>
+          ) : (
+            <div className="sidebar_userinfo">
+              당신의 프랜차이즈 정보를 한눈에
+            </div>
+          )}
         </div>
 
         <nav className="sidebar__nav">
@@ -89,6 +113,20 @@ function Header() {
             className={location.pathname === "/stats" ? "active" : ""}
           >
             <span className="icon pi pi-chart-bar"></span> 프랜차이즈 통계
+          </Link>
+          <Link
+            to="/helpInfo"
+            onClick={() => setIsSidebarVisible(false)}
+            className={location.pathname === "/helpInfo" ? "active" : ""}
+          >
+            <span className="icon pi pi-book"></span> 창업정보
+          </Link>
+          <Link
+            to="/board"
+            onClick={() => setIsSidebarVisible(false)}
+            className={location.pathname === "/board" ? "active" : ""}
+          >
+            <span className="icon pi pi-clipboard"></span> 회원게시판
           </Link>
           {/* 사이드바에서도 로그인 여부에 따라 표시 */}
           {globalState.isLoggedIn ? (
