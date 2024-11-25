@@ -203,3 +203,95 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
+
+// 공통 카드 css
+.card {
+  background-color: $card-background-color;
+  border-radius: $card-border-radius;
+  box-shadow: $card-box-shadow;
+  padding: 1.5rem;
+  border: 1px solid $card-border-color;
+
+  @media (max-width: 1000px) {
+    padding: 1rem;
+  }
+}
+
+// 공통 페이지 컨테이너 css
+.pages-container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 3px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #fafafa;
+  @media (max-width: 1000px) {
+    width: 100%;
+    padding: 5px;
+    padding-top: 10px;
+    border: 0px;
+  }
+  // 공통 페이지 헤더 css
+  .pages-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media (max-width: 768px) {
+      text-align: center;
+      display: block;
+    }
+
+    .header-title {
+      font-size: 1.8rem;
+      color: $card-h4-color;
+      font-weight: bold;
+      @media (max-width: 768px) {
+        font-size: 1.5rem;
+      }
+    }
+    // 공통 카드 헤더 셀렉트 태그 css
+    .header-selects {
+      display: flex;
+      gap: 1rem;
+      @media (max-width: 768px) {
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .dropdown {
+        width: 160px;
+        height: 30px;
+        text-align: center;
+        align-items: center;
+        background-color: $card-background-color;
+        border: 1px solid $border-color;
+        font-size: 1.2rem;
+        color: $text-color;
+        @media (max-width: 768px) {
+          width: 90px;
+          height: 30px;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+.panel {
+  background-color: $card-background-color;
+  padding: 1rem;
+
+  .p-panel-header {
+    padding-bottom: 10px;
+    font-size: 1.2rem;
+    color: $card-h4-color;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+}

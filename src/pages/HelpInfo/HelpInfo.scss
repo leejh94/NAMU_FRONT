@@ -1,371 +1,106 @@
-// @import "../../App.scss";
-
-// .helpInfo-container {
-//   width: 90%;
-//   margin: 0 auto;
-//   display: flex;
-//   flex-direction: column;
-//   gap: 0.5rem;
-//   border: 3px solid #ddd;
-//   border-radius: 8px;
-//   padding: 20px;
-//   background-color: #fafafa;
-//   @media (max-width: 1000px) {
-//     width: 100%;
-//     padding: 5px;
-//     padding-top: 10px;
-//     border: 0px;
-//   }
-
-//   .img-box {
-//     img {
-//       width: 200px;
-//       height: 200px;
-//     }
-//   }
-// }
-
-// .card {
-//   background-color: $card-background-color;
-//   border-radius: $card-border-radius;
-//   box-shadow: $card-box-shadow;
-//   padding: 1.5rem;
-//   border: 1px solid $card-border-color;
-
-//   @media (max-width: 1000px) {
-//     padding: 1rem;
-//   }
-// }
-
-// .helpInfo-header {
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   padding: 1rem;
-
-//   @media (max-width: 768px) {
-//     text-align: center;
-//     display: block;
-//   }
-
-//   .header-title {
-//     font-size: 1.8rem;
-//     color: $card-h4-color;
-//     font-weight: bold;
-//     @media (max-width: 768px) {
-//       font-size: 1.5rem;
-//     }
-//   }
-
-//   .header-selects {
-//     display: flex;
-//     gap: 1rem;
-//     @media (max-width: 768px) {
-//       justify-content: center;
-//       gap: 0.5rem;
-//     }
-
-//     .dropdown {
-//       width: 160px;
-//       height: 30px;
-//       text-align: center;
-//       align-items: center;
-//       background-color: $card-background-color;
-//       border: 1px solid $border-color;
-//       font-size: 1.2rem;
-//       color: $text-color;
-//       @media (max-width: 768px) {
-//         width: 90px;
-//         height: 30px;
-//         font-size: 0.8rem;
-//       }
-//     }
-//   }
-// }
-
-// .table-card {
-//   background-color: $card-background-color;
-//   border-radius: $card-border-radius;
-//   box-shadow: $card-box-shadow;
-//   padding: 1rem;
-//   margin-top: 1.5rem;
-//   font-size: 1.2rem;
-//   @media (max-width: 768px) {
-//     margin-top: 0.5rem;
-//     font-size: 1rem;
-//   }
-
-//   .table-panel {
-//     background-color: $card-background-color;
-//     padding: 1rem;
-
-//     .p-panel-header {
-//       padding-bottom: 10px;
-//       font-size: 1.2rem;
-//       color: $card-h4-color;
-//       @media (max-width: 768px) {
-//         font-size: 1rem;
-//       }
-//     }
-
-//     .table {
-//       .store-link {
-//         cursor: pointer;
-
-//         &:hover {
-//           text-decoration: underline;
-//         }
-//       }
-
-//       button {
-//         font-family: "Maplestory Bold";
-//       }
-
-//       .p-column-title {
-//         text-align: center;
-//         font-weight: bold;
-//         color: $text-color;
-//       }
-
-//       .p-datatable-thead > tr > th {
-//         background-color: $card-background-color;
-//         color: $card-h4-color;
-//         padding: 10px;
-//         @media (max-width: 768px) {
-//           font-size: 0.5rem;
-//         }
-//       }
-
-//       .p-datatable-tbody > tr > td {
-//         width: 20%;
-//         padding: 8px 12px;
-//         font-size: 1rem;
-//         color: $text-color;
-
-//         @media (max-width: 768px) {
-//           font-size: 0.5rem;
-//         }
-
-//         &:first-child {
-//           width: 45%;
-//           text-decoration: underline;
-//           color: $primary-color;
-//         }
-
-//         &:last-child {
-//           width: 15%;
-//         }
-//       }
-
-//       .p-datatable-tbody > tr:nth-child(odd) > td {
-//         background-color: $card-border-color;
-//       }
-
-//       .p-datatable-tbody > tr:nth-child(even) > td {
-//         background-color: $card-background-color;
-//       }
-//     }
-
-//     .p-paginator-bottom {
-//       @media (max-width: 768px) {
-//       }
-//       .p-paginator-element {
-//         @media (max-width: 768px) {
-//           padding: 0rem;
-//           font-size: 0.6rem;
-//         }
-//       }
-//     }
-//   }
-// }
+// src/pages/HelpInfo/HelpInfo.scss
 @import "../../App.scss";
 
-.helpInfo-container {
-  width: 90%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-
-  @media (max-width: 1000px) {
-    width: 100%;
-  }
-
-  .helpInfo-header {
-    background-color: $background-color;
-    border: 1px solid $border-color;
-    border-radius: 8px;
-    padding: 1.5rem;
+.helpInfo-carousel {
+  .p-carousel-item {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    @media (max-width: 768px) {
-      flex-direction: column;
-      text-align: center;
-      padding: 1rem;
-    }
-
-    .header-title {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: $text-color;
-
-      @media (max-width: 768px) {
-        font-size: 1.5rem;
-      }
-    }
-
-    .header-selects {
-      display: flex;
-      gap: 1rem;
-
-      @media (max-width: 768px) {
-        justify-content: center;
-        gap: 0.5rem;
-      }
-
-      .dropdown {
-        width: 160px;
-        height: 40px;
-        padding: 0.5rem;
-        font-size: 1rem;
-        background-color: $background-color;
-        border: 1px solid $border-color;
-        color: $text-color;
-        border-radius: 8px;
-
-        @media (max-width: 768px) {
-          width: 100px;
-          height: 35px;
-          font-size: 0.9rem;
-        }
-      }
-    }
-  }
-
-  .table-card {
-    background-color: $background-color;
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
-    @media (max-width: 768px) {
-      padding: 1rem;
-    }
-
-    .table-panel {
-      background-color: $card-background-color;
-      padding: 1rem;
-
-      .p-panel-header {
-        padding-bottom: 10px;
-        font-size: 1.2rem;
-        color: $card-h4-color;
-
-        @media (max-width: 768px) {
-          font-size: 1rem;
-        }
-      }
-
-      .table {
-        .store-link {
-          cursor: pointer;
-
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-
-        button {
-          font-family: "Maplestory Bold";
-        }
-
-        .p-column-title {
-          text-align: center;
-          font-weight: bold;
-          color: $text-color;
-        }
-
-        .p-datatable-thead > tr > th {
-          background-color: $card-background-color;
-          color: $card-h4-color;
-          padding: 10px;
-
-          @media (max-width: 768px) {
-            font-size: 0.5rem;
-          }
-        }
-
-        .p-datatable-tbody > tr > td {
-          width: 20%;
-          padding: 8px 12px;
-          font-size: 1rem;
-          color: $text-color;
-
-          @media (max-width: 768px) {
-            font-size: 0.5rem;
-          }
-
-          &:first-child {
-            width: 45%;
-            text-decoration: underline;
-            color: $primary-color;
-          }
-
-          &:last-child {
-            width: 15%;
-          }
-        }
-
-        .p-datatable-tbody > tr:nth-child(odd) > td {
-          background-color: $card-border-color;
-        }
-
-        .p-datatable-tbody > tr:nth-child(even) > td {
-          background-color: $card-background-color;
-        }
-      }
-
-      .p-paginator-bottom {
-        @media (max-width: 768px) {
-        }
-        .p-paginator-element {
-          @media (max-width: 768px) {
-            padding: 0rem;
-            font-size: 0.6rem;
-          }
-        }
-      }
-    }
-  }
-
-  .carousel-card {
-    background-color: $card-background-color;
-    border-radius: 8px;
-    padding: 1rem;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 1rem;
+    align-items: center;
+    justify-content: center;
+    .helpInfo-carousel-card {
+      width: 200px; // 고정된 너비
+      height: 250px; // 고정된 높이
+      // padding: 10px;
+      // background-color: $card-background-color;
+      // border: 1px solid $border-color;
+      // border-radius: 8px;
 
-    .carousel-img {
-      width: 100px;
-      height: auto;
-      max-width: 150px;
-      margin-bottom: 1rem;
-      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin: 0.5rem;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .helpInfo-carousel-img {
+        width: 150px; // 부모 크기에 맞춤
+        height: 150px; // 고정 높이
+        object-fit: contain; // 비율에 맞게 조정
+        border-radius: 8px;
+        margin: 0 auto;
+      }
+
+      .helpInfo-carousel-title {
+        font-size: 1rem;
+        font-weight: bold;
+        color: $text-color;
+        margin: 0.5rem 0;
+      }
+
+      .helpInfo-carousel-description {
+        font-size: 0.8rem;
+        color: $text-color;
+      }
+    }
+  }
+}
+
+.helpInfo-table {
+  .helpInfo-store-link {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .p-datatable-thead > tr > th {
+    background-color: $card-background-color;
+    color: $card-h4-color;
+    padding: 10px;
+
+    @media (max-width: 768px) {
+      font-size: 0.5rem;
+    }
+  }
+
+  .p-datatable-tbody > tr > td {
+    width: 20%;
+    padding: 8px 12px;
+    font-size: 1rem;
+    color: $text-color;
+
+    @media (max-width: 768px) {
+      font-size: 0.5rem;
     }
 
-    .carousel-title {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: $text-color;
-      margin-bottom: 0.5rem;
+    &:first-child {
+      width: 45%;
+      text-decoration: underline;
+      color: $primary-color;
     }
 
-    .carousel-description {
-      font-size: 0.9rem;
-      color: $text-color;
+    &:last-child {
+      width: 15%;
+    }
+  }
+
+  .p-datatable-tbody > tr:nth-child(odd) > td {
+    background-color: $card-border-color;
+  }
+
+  .p-datatable-tbody > tr:nth-child(even) > td {
+    background-color: $card-background-color;
+  }
+}
+
+.p-paginator-bottom {
+  .p-paginator-element {
+    @media (max-width: 768px) {
+      padding: 0rem;
+      font-size: 0.6rem;
     }
   }
 }
