@@ -1,0 +1,226 @@
+// src/pages/HelpInfo/HelpInfo.scss
+@import "../../App.scss";
+
+.helpInfo-container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+
+  .helpInfo-header {
+    background-color: $background-color;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .header-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: $text-color;
+
+      @media (max-width: 768px) {
+        font-size: 1.5rem;
+      }
+    }
+
+    .header-selects {
+      display: flex;
+      gap: 1rem;
+
+      @media (max-width: 768px) {
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .dropdown {
+        width: 160px;
+        height: 40px;
+        padding: 0.5rem;
+        font-size: 1rem;
+        background-color: $background-color;
+        border: 1px solid $border-color;
+        color: $text-color;
+        border-radius: 8px;
+
+        @media (max-width: 768px) {
+          width: 100px;
+          height: 35px;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  .table-card {
+    background-color: $background-color;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: 768px) {
+      padding: 1rem;
+    }
+
+    .table-panel {
+      background-color: $card-background-color;
+      padding: 1rem;
+
+      .p-panel-header {
+        padding-bottom: 10px;
+        font-size: 1.2rem;
+        color: $card-h4-color;
+
+        @media (max-width: 768px) {
+          font-size: 1rem;
+        }
+      }
+
+      .table {
+        .store-link {
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        button {
+          font-family: "Maplestory Bold";
+        }
+
+        .p-column-title {
+          text-align: center;
+          font-weight: bold;
+          color: $text-color;
+        }
+
+        .p-datatable-thead > tr > th {
+          background-color: $card-background-color;
+          color: $card-h4-color;
+          padding: 10px;
+
+          @media (max-width: 768px) {
+            font-size: 0.5rem;
+          }
+        }
+
+        .p-datatable-tbody > tr > td {
+          width: 20%;
+          padding: 8px 12px;
+          font-size: 1rem;
+          color: $text-color;
+
+          @media (max-width: 768px) {
+            font-size: 0.5rem;
+          }
+
+          &:first-child {
+            width: 45%;
+            text-decoration: underline;
+            color: $primary-color;
+          }
+
+          &:last-child {
+            width: 15%;
+          }
+        }
+
+        .p-datatable-tbody > tr:nth-child(odd) > td {
+          background-color: $card-border-color;
+        }
+
+        .p-datatable-tbody > tr:nth-child(even) > td {
+          background-color: $card-background-color;
+        }
+      }
+
+      .p-paginator-bottom {
+        @media (max-width: 768px) {
+        }
+        .p-paginator-element {
+          @media (max-width: 768px) {
+            padding: 0rem;
+            font-size: 0.6rem;
+          }
+        }
+      }
+    }
+  }
+
+  .p-carousel-item {
+    display: flex;
+    text-align: center;
+    align-items: center;
+  }
+  .carousel-card {
+    width: 100%;
+    background-color: $card-background-color;
+    border: 2px solid $border-color;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 0.5rem;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.05); // 약간 확대 효과
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); // 강조된 그림자 효과
+    }
+
+    .carousel-delete-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 10px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: darkred;
+      }
+    }
+
+    .carousel-img {
+      width: 200px; // 기본 크기
+      height: 200px; // 정사각형 영역으로 고정
+      object-fit: contain; // 이미지 비율을 유지하면서 여백 포함
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      display: block;
+      margin: 0 auto; // 가운데 정렬
+      background-color: $background-color; // 여백 배경색 지정 (선택)
+    }
+
+    .carousel-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: $text-color;
+      margin-bottom: 0.5rem;
+    }
+
+    .carousel-description {
+      font-size: 0.9rem;
+      color: $text-color;
+    }
+  }
+}

@@ -10,6 +10,7 @@ import Stats from "./pages/Stats/Stats";
 import Stats2 from "./pages/Stats/Stats2";
 import Board from "./pages/Board/Board";
 import HelpInfo from "./pages/HelpInfo/HelpInfo";
+import HelpInfo2 from "./pages/HelpInfo/HelpInfo2";
 import Login from "./pages/Login/Login";
 import KakaoRedirect from "./pages/Login/KakaoRedirect";
 import "./App.scss"; // SCSS 파일 import
@@ -30,6 +31,7 @@ function App() {
             <Route path="/stats" element={<Stats />} />
             {/* <Route path="/Stats2" element={<Stats2 />} /> */}
             <Route path="/helpInfo" element={<HelpInfo />} />
+            <Route path="/helpInfo2" element={<HelpInfo2 />} />
             <Route path="/board" element={<Board />} />
             <Route path="/login" element={<Login />} />
             <Route path="/auth/login/callback" element={<KakaoRedirect />} />
