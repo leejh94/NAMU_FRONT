@@ -1,17 +1,21 @@
 // src/hooks/useHelpInfo.js
 import { useState, useEffect } from "react";
-import { getInfoSiteList, siteAdd, siteDelete } from "../service/helpInfoApi";
+import {
+  getInfoSiteList,
+  siteAdd,
+  siteDelete,
+  siteNewOrderSave,
+} from "../service/helpInfoApi";
 
 export function useHelpInfo() {
   const [siteList, setSiteList] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // 사이트 목록 불러오는 함수
   const fetchSiteList = async () => {
     setLoading(true);
     try {
       const data = await getInfoSiteList();
-      setSiteList(data); // 사이트 목록 상태 업데이트
+      setSiteList(data);
     } catch (error) {
       console.error("데이터 로드 오류:", error);
     } finally {
@@ -19,13 +23,12 @@ export function useHelpInfo() {
     }
   };
 
-  // 사이트 추가 함수
   const addSite = async (img, link, title, description) => {
     setLoading(true);
     try {
       const data = await siteAdd(img, link, title, description);
       if (data.code === 200) {
-        fetchSiteList(); // 추가 후 목록 갱신
+        fetchSiteList();
       }
       return data;
     } catch (error) {
@@ -36,13 +39,12 @@ export function useHelpInfo() {
     }
   };
 
-  // 사이트 삭제 함수
   const deleteSite = async (siteId) => {
     setLoading(true);
     try {
       const data = await siteDelete(siteId);
       if (data.code === 200) {
-        fetchSiteList(); // 삭제 후 목록 갱신
+        fetchSiteList();
       }
       return data;
     } catch (error) {
@@ -53,10 +55,37 @@ export function useHelpInfo() {
     }
   };
 
-  // 컴포넌트 마운트 시 목록을 불러옴
+  const saveNewOrder = async () => {
+    try {
+      const orderPayload = siteList.map((site) => ({
+        siteInfoId: site.siteInfoId,
+        indexOrder: site.indexOrder,
+      }));
+
+      const data = await siteNewOrderSave(orderPayload);
+      console.log(data);
+      if (data.code === 200) {
+        console.log("순서 저장 완료:", siteList);
+      } else {
+        console.error("순서 저장 실패:", data.message);
+      }
+      return data;
+    } catch (error) {
+      console.error("순서 저장 API 호출 오류:", error);
+      throw error;
+    }
+  };
+
   useEffect(() => {
     fetchSiteList();
   }, []);
 
-  return { siteList, addSite, deleteSite, loading };
+  return {
+    siteList,
+    setSiteList,
+    loading,
+    addSite,
+    deleteSite,
+    saveNewOrder,
+  };
 }
