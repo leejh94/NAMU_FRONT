@@ -1,6 +1,11 @@
 // src/pages/HelpInfo/HelpInfo.scss
 @import "../../App.scss";
 
+.p-carousel-container,
+.p-carousel-indicators {
+  background-color: $card-background-color;
+}
+
 .helpInfo-carousel {
   .p-carousel-item {
     display: flex;
