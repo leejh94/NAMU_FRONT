@@ -35,9 +35,15 @@ const getCookie = (name) => {
 authApiClient.interceptors.request.use(
   (config) => {
     const token = getCookie("jwt"); // 쿠키에서 JWT 토큰 가져오기
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    if (!token) {
+      // JWT 토큰이 없을 경우 /login으로 리다이렉트
+      window.location.href = "/login";
+      alert("로그인 유지 최대 1시간. 재로그인 부탁드립니다.");
+      return Promise.reject(
+        new Error("JWT 토큰이 없습니다. 로그인 페이지로 이동합니다.")
+      );
     }
+    config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
   (error) => Promise.reject(error)
