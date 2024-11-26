@@ -32,6 +32,10 @@ export function useLogin() {
           expires: 1 / 24,
         });
 
+        localStorage.setItem("isLoggedIn", true);
+        localStorage.setItem("nickName", data.data.nickname);
+        localStorage.setItem("role", data.data.role);
+
         // 로그인 성공 시 페이지 이동
         navigate("/");
       } else {
@@ -65,6 +69,10 @@ export function useLogin() {
         Cookies.set("jwt", jwtToken, {
           expires: 1 / 24,
         });
+
+        localStorage.setItem("isLoggedIn", true);
+        localStorage.setItem("nickName", data.data.nickname);
+        localStorage.setItem("role", data.data.role);
 
         navigate("/");
       } else {

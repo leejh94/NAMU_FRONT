@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Sidebar } from "primereact/sidebar";
-import { Button } from "primereact/button";
 import { useGlobalState } from "../context/GlobalStateContext";
 import Cookies from "js-cookie"; // 쿠키 관리 라이브러리
 import "primereact/resources/primereact.min.css";
@@ -19,6 +18,9 @@ function Header() {
     // 로그아웃 시 글로벌 상태 초기화
     updateGlobalState("isLoggedIn", false);
     updateGlobalState("nickName", "");
+    updateGlobalState("role", "");
+
+    localStorage.clear();
   };
 
   return (
@@ -32,41 +34,37 @@ function Header() {
       {/* 큰 화면에서만 보이는 네비게이션 */}
       <nav className="header__nav header__nav--large">
         <Link to="/" className={location.pathname === "/" ? "active" : ""}>
-          홈
+          <span className="icon pi pi-home"></span>
         </Link>
         <Link
           to="/search"
           className={location.pathname === "/search" ? "active" : ""}
         >
-          프랜차이즈 검색
+          <span className="icon pi pi-search"></span>
         </Link>
         <Link
           to="/stats"
           className={location.pathname === "/stats" ? "active" : ""}
         >
-          프랜차이즈 통계
+          <span className="icon pi pi-chart-bar"></span>
         </Link>
-        {/* 로그인 여부에 따라 표시 */}
-        {globalState.isLoggedIn ? (
-          <Link onClick={handleLogout}>로그아웃</Link>
-        ) : (
-          <Link
-            to="/login"
-            className={location.pathname === "/login" ? "active" : ""}
-          >
-            로그인
-          </Link>
-        )}
+        <Link
+          to="/helpInfo"
+          className={location.pathname === "/helpInfo" ? "active" : ""}
+        >
+          <span className="icon pi pi-book"></span>
+        </Link>
+        <Link
+          to="/board"
+          className={location.pathname === "/board" ? "active" : ""}
+        >
+          <span className="icon pi pi-clipboard"></span>
+        </Link>
+        <span
+          className="header__menu-toggle icon pi pi-bars"
+          onClick={() => setIsSidebarVisible(true)}
+        ></span>
       </nav>
-
-      {/* 작은 화면에서만 보이는 커스텀 햄버거 버튼 */}
-      <Button
-        type="button"
-        onClick={() => setIsSidebarVisible(true)}
-        icon="pi pi-bars"
-        outlined
-        className="header__menu-toggle"
-      ></Button>
 
       {/* Sidebar로 작은 화면에서 표시될 네비게이션 */}
       <Sidebar
@@ -81,7 +79,18 @@ function Header() {
             alt="로고"
             className="logo"
           />
-          <div className="description">당신의 프랜차이즈 정보를 한눈에</div>
+
+          {globalState.isLoggedIn ? (
+            <div className="sidebar_userinfo">
+              {globalState.role === "ADMIN" && <span>(관리자)</span>}
+              {globalState.role === "USER" && <span>(일반회원)</span>}
+              <span>{globalState.nickName} 님 안녕하세요.</span>
+            </div>
+          ) : (
+            <div className="sidebar_userinfo">
+              당신의 프랜차이즈 정보를 한눈에
+            </div>
+          )}
         </div>
 
         <nav className="sidebar__nav">
@@ -105,6 +114,20 @@ function Header() {
             className={location.pathname === "/stats" ? "active" : ""}
           >
             <span className="icon pi pi-chart-bar"></span> 프랜차이즈 통계
+          </Link>
+          <Link
+            to="/helpInfo"
+            onClick={() => setIsSidebarVisible(false)}
+            className={location.pathname === "/helpInfo" ? "active" : ""}
+          >
+            <span className="icon pi pi-book"></span> 창업정보
+          </Link>
+          <Link
+            to="/board"
+            onClick={() => setIsSidebarVisible(false)}
+            className={location.pathname === "/board" ? "active" : ""}
+          >
+            <span className="icon pi pi-clipboard"></span> 회원게시판
           </Link>
           {/* 사이드바에서도 로그인 여부에 따라 표시 */}
           {globalState.isLoggedIn ? (
