@@ -1,7 +1,7 @@
 // src/hooks/useLogin.js
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { authLogin, adminLogin } from "../service/loginApi";
+import { authLogin, adminLogin, roleCheck } from "../service/loginApi";
 import { useGlobalState } from "../context/GlobalStateContext";
 import Cookies from "js-cookie"; // 쿠키 관리 라이브러리
 
@@ -87,5 +87,24 @@ export function useLogin() {
     }
   };
 
-  return { handleKakaoLogin, handleAdminLogin };
+  const adminCheck = async () => {
+    try {
+      setIsProcessing(true);
+      const data = await roleCheck();
+      if (data.data === "ADMIN" || data.data === "MASTER") {
+        alert("관리자 권한 확인 완료.");
+      } else {
+        alert("관리자 권한이 없습니다. 메인 페이지로 돌아갑니다.");
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("관리자 페이지 진입 오류 :", error);
+      alert("관리자 페이지 진입 오류. 메인 페이지로 돌아갑니다.");
+      navigate("/");
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  return { handleKakaoLogin, handleAdminLogin, adminCheck };
 }
