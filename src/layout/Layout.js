@@ -1,6 +1,6 @@
 // src/layout/Layout.js
 import React from "react";
-import Header from "./Header2";
+import Header from "./Header";
 import Footer from "./Footer";
 import "./Layout.scss"; // SCSS 파일 import
 

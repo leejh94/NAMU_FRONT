@@ -11,7 +11,7 @@ import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
-import "./HelpInfo.scss";
+import "./HelpInfo2.scss";
 
 function HelpInfo() {
   const { globalState } = useGlobalState();
