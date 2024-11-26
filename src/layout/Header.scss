@@ -17,35 +17,45 @@
   &__nav--large {
     display: flex;
     gap: 20px;
+    align-items: center;
 
+    // 메뉴 아이콘
     a {
-      color: $text-color;
-      text-decoration: none;
-      font-weight: bold;
-
+      border: 2px solid $card-border-color;
+      border-radius: 20%;
+      padding: 10px;
       &:hover {
-        color: #007bff;
+        border: 2px solid $secondary-color;
+        background-color: $secondary-color;
+        color: #fff;
+        span {
+          color: #fff;
+        }
+      }
+      span {
+        color: $text-color;
+        font-size: 30px;
+        @media (max-width: 1000px) {
+          font-size: 20px;
+        }
       }
     }
   }
 
   &__menu-toggle {
-    display: none; // 기본적으로 햄버거 버튼을 숨김
-    width: 100px;
+    padding: 10px;
     font-size: 30px;
-    color: #666;
-    background: none;
-    border: none;
+    border: 2px solid $card-border-color;
+    border-radius: 20%;
     cursor: pointer;
-  }
-
-  @media (max-width: 1000px) {
-    &__nav--large {
-      display: none; // 작은 화면에서 네비게이션 메뉴 숨김
+    color: $text-color;
+    &:hover {
+      border: 2px solid $secondary-color;
+      background-color: $secondary-color;
+      color: #fff;
     }
-
-    &__menu-toggle {
-      display: block; // 작은 화면에서 햄버거 버튼 표시
+    @media (max-width: 1000px) {
+      font-size: 20px;
     }
   }
 }
@@ -70,7 +80,8 @@
       margin-bottom: 10px;
     }
 
-    .description {
+    .sidebar_userinfo {
+      display: flex;
       font-size: 0.9rem;
       color: #e0e0e0;
     }
