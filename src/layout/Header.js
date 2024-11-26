@@ -122,6 +122,16 @@ function Header() {
           >
             <span className="icon pi pi-book"></span> 창업정보
           </Link>
+          {globalState.role === "ADMIN" && (
+            <Link
+              to="/helpInfoAdmin"
+              onClick={() => setIsSidebarVisible(false)}
+              className={location.pathname === "/helpInfoAdmin" ? "active" : ""}
+            >
+              &nbsp;&nbsp;<span className="icon pi pi-wrench"></span> 창업정보 -
+              관리자
+            </Link>
+          )}
           <Link
             to="/board"
             onClick={() => setIsSidebarVisible(false)}

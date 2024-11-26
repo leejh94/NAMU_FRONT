@@ -5,7 +5,7 @@ import { Panel } from "primereact/panel";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Chart } from "primereact/chart";
-import "./Stats2.scss";
+import "./Stats.scss";
 import { useStats } from "../../hooks/useStats";
 import { formatCurrency } from "../../util/formatCurrency";
 import { useNavigate } from "react-router-dom";
