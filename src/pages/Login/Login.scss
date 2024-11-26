@@ -20,6 +20,7 @@
 
     .p-tabmenu-nav {
       justify-content: center;
+      background-color: $card-background-color;
     }
 
     .p-tabmenu-nav li {
@@ -27,6 +28,7 @@
       padding: 0.5rem 1rem;
 
       a {
+        background-color: $card-background-color;
         span {
           font-size: 30px;
         }
