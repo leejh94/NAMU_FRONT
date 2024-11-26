@@ -33,6 +33,7 @@ npm install xml2js
 
 npm install js-cookie
 
+npm install react-beautiful-dnd
 
 ```
 
