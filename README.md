@@ -1,7 +1,10 @@
 # 프랜차이즈 정보 조회 사이트 README 작성중
 
 1. 기간 : 2024.10.28 ~
-2. 배포 URL : http://jaehoon.site/ (배포중 프리티어다보니 간헐적 끊김이 있습니다.)
+2. 배포 URL : [http://jaehoon.site/](http://jaehoon.site/)  
+   (배포중 프리티어다보니 간헐적 끊김이 있을 수 있습니다.)
+
+---
 
 ## 목차
 
@@ -12,7 +15,7 @@
 5. [구조 및 아키텍처](#5-구조-및-아키텍처)
 6. [데이터베이스 구조](#6-데이터베이스-구조)
 7. [API 문서](#7-api-문서)
-8. [사용 예시](#8-사용-예시)
+8. [페이지 설명](#8-페이지-설명)
 
 ---
 
@@ -24,10 +27,14 @@
 
 이 프로젝트는 **프론트엔드**와 **백엔드**를 모두 혼자 개발하는 **풀스택 프로젝트**로 진행되고 있습니다. 따라서 개발 속도가 다소 느릴 수 있으나, 완성도를 높이기 위해 최선을 다하고 있습니다.
 
+---
+
 ## 2. 현재 진행 사항 및 진행 예정
 
-- 카카오 로그인 추가 완료.
-- 창업 지원 페이지 및 게시판 진행중
+- 카카오 로그인 , 관리자 로그인 추가 완료
+- 창업 지원 페이지 및 게시판 개발 진행 중
+
+---
 
 ## 3. 개발 환경
 
@@ -41,15 +48,116 @@
   - IDE: PyCharm
 - **서비스 배포**: AWS EC2
 
+---
+
 ## 4. 주요 기능
+
+### 일반 기능
 
 - 지역 및 업종별 프랜차이즈 매출 조회
 - 프랜차이즈 검색 및 정보 상세 조회
+- 창업 관련 정보 조회
+
+### 권한 및 사용자 관리
+
+- **사용자 유형**:
+
+  1. **사이트 마스터**
+     - 사이트 전체를 관리하는 최고 관리자.
+     - 계정 생성은 개발자에 의해 이루어지며, 관리자를 생성할 수 있는 권한을 가짐.
+  2. **관리자**
+     - 사이트 마스터가 생성한 계정.
+     - 일반 회원을 인증 회원으로 전환하거나 데이터 관리 가능.
+  3. **일반 회원**
+     - 카카오 소셜 로그인으로 회원가입 및 로그인 가능.
+     - 로그인 시 자동 회원가입 및 권한 부여.
+  4. **인증 회원**
+     - 마스터 또는 관리자가 일반 회원을 등업.
+
+- **JWT를 활용한 인증 및 권한 관리**:
+
+  - 로그인 시 JWT 토큰 발급 (HMAC-SHA256 서명, 1시간 만료).
+  - 토큰에 고유 사용자 ID, 역할(role) 및 만료시간 포함.
+  - 쿠키에 저장된 토큰을 활용하여 백엔드 AOP로 권한 검사.
+
+- **카카오 소셜 로그인**:
+  - 사용자가 처음 로그인 시, 자동 회원가입 후 로그인까지 진행.
+
+---
 
 ## 5. 구조 및 아키텍처
 
-- 프론트엔드, 백엔드, 데이터베이스 구조
-- 각 서비스 간 데이터 흐름과 통신 방식
+### 인증 및 권한 관리 흐름
+
+1. **로그인 및 회원가입**:
+
+   - 일반 회원은 카카오 소셜 로그인을 통해 회원가입 및 로그인.
+   - 관리자는 사이트 마스터가 계정을 생성.
+   - 인증 회원으로의 전환은 관리자 또는 마스터의 승인 필요.
+
+2. **JWT 발급 및 인증**:
+
+   - 백엔드에서 HMAC-SHA256 알고리즘으로 JWT 생성.
+   - `roleCheck` API를 통해 사용자 권한 확인 및 검증.
+   - 아래 코드는 권한 검사 과정의 일부 코드입니다:
+     ```java
+     @GetMapping("/roleCheck")
+     public StatusDTO roleCheck(@RequestHeader("Authorization") String token) {
+         try {
+             // 토큰 검증 및 역할 추출
+             token = token.substring(7);
+             String role = authService.getRoleFromToken(token);
+             return new StatusDTO(200, "권한 확인 성공", role);
+         } catch (Exception e) {
+             return new StatusDTO(401, "권한 확인 실패: " + e.getMessage(), null);
+         }
+     }
+     ```
+
+3. **AOP를 이용한 권한 검사**:
+
+   - 백엔드에서는 AOP로 역할 기반 접근 제어를 구현.
+   - 다음은 `@RequiredRole` 애노테이션을 활용한 코드입니다:
+
+     ```java
+        @Aspect
+        @Component
+        public class AuthorizationAspect {
+
+            private final HttpServletRequest request;
+
+            public AuthorizationAspect(HttpServletRequest request) {
+                this.request = request;
+            }
+
+            // @RequiredRole 애노테이션이 있는 메서드 실행 전
+            @Before("@annotation(requiredRole)")
+            public void checkAuthorization(RequiredRole requiredRole) {
+                // 헤더에서 토큰 추출
+                String token = request.getHeader("Authorization");
+                if (token == null || !token.startsWith("Bearer ")) {
+                    throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "토큰이 필요합니다.");
+                }
+
+                try {
+                    // JWT 토큰에서 사용자 역할 확인
+                    token = token.substring(7); // "Bearer " 부분 제거
+                    Claims claims = JwtTokenUtil.validateToken(token);
+                    String userRole = claims.get("role", String.class);
+
+                    // 역할이 허용된 목록에 포함되는지 확인
+                    if (Arrays.stream(requiredRole.value()).noneMatch(userRole::equals)) {
+                        throw new ResponseStatusException(HttpStatus.FORBIDDEN, "접근 권한이 없습니다.");
+                    }
+                } catch (Exception e) {
+                    throw new ResponseStatusException(HttpStatus.FORBIDDEN, "토큰 검증 실패: " + e.getMessage());
+                }
+            }
+        }
+
+     ```
+
+---
 
 ## 6. 데이터베이스 구조
 
@@ -57,26 +165,13 @@
 
 ### 회원관련
 
-![회원관련 테이블 ERD](/src/assets/readme/table1.png)
+- ![회원관련 테이블 ERD](/src/assets/readme/table1.png)
 
 ### 정보공개서 크롤링 데이터 관련
 
 ![크롤링 테이블 ERD](/src/assets/readme/table2.png)
 
 #
-
-<!-- ### 테이블 설명 -->
-
-<!-- - **failed_crawl_log**: 크롤링 실패한 고유번호(`fir_mst_sn`)와 에러 메시지(`error_message`), 시도 날짜(`attempt_date`)를 저장
-- **franchise_changes**: `fir_mst_sn`별로 연도(`report_year`)와 해당 연도의 신규 개점 수(`new_openings`), 계약 종료 수(`contract_terminations`), 계약 해지 수(`contract_cancellations`), 명의 변경 수(`name_changes`)를 저앙
-- **franchise_basic_info**: 프랜차이즈의 기본 정보를 저장하는 테이블로, 고유번호(`fir_mst_sn`), 상호(`company_name`), 영업표지(`business_mark`), 대표자, 업종(`industry`), 법인설립일, 사업자등록일, 주소 등 기본적인 식별 정보를 저장
-- **franchise_financial_status**: `fir_mst_sn`과 연도(`report_year`)별로 자산(`assets`), 부채(`liabilities`), 자본(`equity`), 매출(`revenue`), 영업이익(`operating_income`), 당기순이익(`net_income`) 등 재무 상태를 저장
-- **contract_period**: 가맹계약의 기본 기간(`initial_period`)과 연장 기간(`renewal_period`) 정보를 `fir_mst_sn`별로 저장
-- **burden_costs**: 가맹사업자의 부담금 내역을 `fir_mst_sn`별로 저장하며, 가입비(`entry_fee`), 교육비(`education_fee`), 보증금(`deposit`), 기타 비용(`other_costs`), 총 부담금(`total`)을 저장
-- **avg_sales_by_region**: `fir_mst_sn`과 연도(`report_year`), 지역(`region`)별로 프랜차이즈의 평균 매출(`avg_sales`), 면적당 평균 매출(`avg_sales_per_area`), 가맹점 수(`franchise_count`)를 저장
-- **franchise_store_status**: `fir_mst_sn`과 연도(`report_year`), 지역(`region`)별로 전체 매장 수(`total_stores`), 가맹점 수(`franchise_stores`), 직영점 수(`direct_stores`)를 저장
-- **interior_costs**: `fir_mst_sn`별로 단위 면적당 인테리어 비용(`unit_area_cost`), 기준 점포 면적(`standard_store_area`), 전체 인테리어 비용(`interior_cost`)을 저장
-- **promo_costs**: `fir_mst_sn`과 연도(`report_year`)별로 광고비(`ad_cost`)와 판촉비(`promo_cost`)를 저장 -->
 
 ## 7. API 형식
 
@@ -141,7 +236,25 @@
   }
   ```
 
-## 8. 사용 예시
+## 8. 페이지 설명
 
-- 스크린샷을 포함한 주요 기능 설명
-- 사용자가 페이지를 어떻게 탐색할 수 있는지 예시
+1. 로그인페이지 : 일반회원(카카오) 로그인 및 관리자 로그인 기능.
+   ![로그인](/src/assets/readme/로그인.gif)
+
+2. 메인페이지 :
+   ![메인페이지](/src/assets/readme/메인페이지.gif)
+3. 검색페이지 :
+
+- 검색 : 검색어를 입력시 관련 목록 조회.
+  ![검색](/src/assets/readme/검색페이지-검색.gif)
+- 매출 정보 : 검색한 프랜차이즈의 지역 매출 조회.
+  ![매출정보](/src/assets/readme/검색페이지-매출정보.gif)
+- 가맹 현황 : 검색한 프랜차이즈의 창업 비용 및 가맹 수 조회.
+  ![가맹현황](/src/assets/readme/검색페이지-가맹현황.gif)
+- 브랜드 정보 : 검색한 프랜차이즈의 기본정보 및 관련 뉴스 조회.
+  ![브랜드정보](/src/assets/readme/검색페이지-브랜드정보.gif)
+
+4. 창업정보페이지 (개발진행중) :
+
+- 유용한 사이트 : 관리자가 등록한 관련 사이트 목록 CRUD
+  ![창업지원페이지](/src/assets/readme/창업지원페이지.gif)
