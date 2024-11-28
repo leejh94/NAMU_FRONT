@@ -5,19 +5,29 @@ import { Panel } from "primereact/panel";
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { Dropdown } from "primereact/dropdown";
 import { useHelpInfo } from "../../hooks/useHelpInfo";
 import { useLogin } from "../../hooks/useLogin";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+// import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import "./HelpInfoAdmin.scss";
 
 function HelpInfoAdmin() {
   const {
+    region,
+    setRegion,
     siteList,
     setSiteList,
     saveNewOrder,
     addSite,
     deleteSite,
     updateSite,
+    supportList,
+    addSupportBoard,
+    deleteSupportBoard,
+    updatesupportBoard,
   } = useHelpInfo();
 
   const { adminCheck } = useLogin();
@@ -67,12 +77,17 @@ function HelpInfoAdmin() {
     reader.readAsDataURL(file);
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e, type) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+
+    if (type === "site") {
+      setFormData({ ...formData, [name]: value });
+    } else {
+      setSupportFormData({ ...supportformData, [name]: value });
+    }
   };
 
-  const handleSave = async () => {
+  const handleSiteSave = async () => {
     try {
       if (isEditMode) {
         // 수정 모드
@@ -115,21 +130,87 @@ function HelpInfoAdmin() {
     }
   };
 
-  const handleEdit = (site) => {
-    setIsEditMode(true);
-    setEditingSite(site);
-    setFormData({
-      img: "", // 기존 이미지를 유지하기 위해 기본값을 빈 문자열로 설정
-      link: site.siteLink,
-      title: site.siteName,
-      description: site.siteDescription,
-    });
-    setShowDialog(true);
-  };
-
   const handleDeleteSite = async (siteId) => {
     try {
       await deleteSite(siteId);
+      alert("사이트가 성공적으로 삭제되었습니다.");
+    } catch (error) {
+      alert("사이트 삭제 중 오류가 발생했습니다.");
+    }
+  };
+
+  // 지역 선택 옵션
+  const regionOptions = [
+    { label: "지역전체", value: "전체" },
+    { label: "서울", value: "서울" },
+    { label: "부산", value: "부산" },
+    { label: "대구", value: "대구" },
+    { label: "인천", value: "인천" },
+    { label: "광주", value: "광주" },
+    { label: "대전", value: "대전" },
+    { label: "울산", value: "울산" },
+    { label: "세종", value: "세종" },
+    { label: "경기", value: "경기" },
+    { label: "강원", value: "강원" },
+    { label: "충북", value: "충북" },
+    { label: "충남", value: "충남" },
+    { label: "전북", value: "전북" },
+    { label: "전남", value: "전남" },
+    { label: "경북", value: "경북" },
+    { label: "경남", value: "경남" },
+    { label: "제주", value: "제주" },
+  ];
+
+  const [showSupportDialog, setShowSupportDialog] = useState(false);
+  const [supportformData, setSupportFormData] = useState({
+    title: "",
+    link: "",
+    region: "전체",
+  });
+
+  // 저장 버튼 클릭 핸들러
+  const handleSaveSupportBoard = async () => {
+    if (!supportformData.title || !supportformData.link) {
+      alert("필수 값을 입력해주세요.");
+      return;
+    }
+
+    try {
+      if (isEditMode) {
+        const response = await updatesupportBoard(
+          editingSite?.supportId,
+          supportformData.title,
+          supportformData.link,
+          supportformData.region
+        );
+        console.log("수정 요청 성공 응답: ", response);
+        alert("수정이 완료되었습니다.");
+      } else {
+        console.log("추가 모드 진입");
+
+        const response = await addSupportBoard(
+          supportformData.title,
+          supportformData.link,
+          supportformData.region
+        );
+        console.log("추가 요청 성공 응답: ", response);
+        alert("추가가 완료되었습니다.");
+      }
+    } catch (error) {
+      console.error("API 호출 오류: ", error.response?.data || error.message);
+      alert("작업 중 오류가 발생했습니다.");
+    } finally {
+      // Dialog 초기화
+      setShowSupportDialog(false);
+      setSupportFormData({ title: "", link: "", region: "전체" });
+      setIsEditMode(false);
+      setEditingSite(null);
+    }
+  };
+
+  const handleDeleteSupportBoard = async (supportId) => {
+    try {
+      await deleteSupportBoard(supportId);
       alert("사이트가 성공적으로 삭제되었습니다.");
     } catch (error) {
       alert("사이트 삭제 중 오류가 발생했습니다.");
@@ -140,6 +221,15 @@ function HelpInfoAdmin() {
     <div className="pages-container">
       <div className="pages-header card">
         <span className="header-title">창업 지원 정보 - 관리자</span>
+        <div className="header-selects">
+          <Dropdown
+            value={region}
+            options={regionOptions}
+            onChange={(e) => setRegion(e.value)}
+            placeholder="지역 선택"
+            className="dropdown"
+          />
+        </div>
       </div>
       <div className="card">
         <Panel header="유용한 사이트" toggleable className="panel">
@@ -201,7 +291,17 @@ function HelpInfoAdmin() {
                                   label="수정"
                                   icon="pi pi-pencil"
                                   className="p-button-text button"
-                                  onClick={() => handleEdit(site)}
+                                  onClick={() => {
+                                    setIsEditMode(true);
+                                    setEditingSite(site);
+                                    setFormData({
+                                      img: "", // 기존 이미지를 유지하기 위해 기본값을 빈 문자열로 설정
+                                      link: site.siteLink,
+                                      title: site.siteName,
+                                      description: site.siteDescription,
+                                    });
+                                    setShowDialog(true);
+                                  }}
                                 />
                                 <Button
                                   label="삭제"
@@ -225,7 +325,136 @@ function HelpInfoAdmin() {
           </DragDropContext>
         </Panel>
       </div>
+      <div className="card">
+        <Panel header="지원 게시글" toggleable className="panel">
+          <div className="panel-header">
+            <Button
+              label="추가"
+              icon="pi pi-plus"
+              onClick={() => {
+                setIsEditMode(false);
+                setShowSupportDialog(true);
+              }}
+            />
+          </div>
+          <DataTable
+            value={supportList}
+            paginator
+            rows={5}
+            className="basic-table"
+            onRowClick={(e) => window.open(e.data.link, "_blank")}
+            rowClassName={() => "table-row"}
+            emptyMessage="게시글이 없습니다."
+          >
+            <Column field="title" header="제목" />
+            <Column field="region" header="지역구분" />
+            <Column field="createdAt" header="날짜" />
+            <Column
+              header="작업"
+              body={(rowData) => (
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "10px",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Button
+                    label="수정"
+                    icon="pi pi-pencil"
+                    className="p-button-text"
+                    onClick={() => {
+                      setIsEditMode(true);
+                      setShowSupportDialog(true);
+                      setSupportFormData({
+                        title: rowData.title,
+                        link: rowData.link,
+                        region: rowData.region,
+                      });
+                      setEditingSite(rowData);
+                    }} // 수정 버튼 클릭 시
+                  />
+                  <Button
+                    label="삭제"
+                    icon="pi pi-trash"
+                    className="p-button-text p-button-danger"
+                    onClick={() => handleDeleteSupportBoard(rowData.supportId)} // 삭제 버튼 클릭 시
+                  />
+                </div>
+              )}
+            />
+          </DataTable>
+        </Panel>
+      </div>
+      <Dialog
+        header={isEditMode ? "지원게시판 수정" : "지원게시판 추가"}
+        visible={showSupportDialog}
+        onHide={() => {
+          setShowSupportDialog(false);
+          setSupportFormData({ title: "", link: "", region: "전체" });
+          setIsEditMode(false); // 수정 모드 초기화
+          setEditingSite(null); // 편집 중인 데이터 초기화
+        }}
+        className="site-info-popup"
+      >
+        {/* 제목 입력 */}
+        <div className="p-field">
+          <span>제목</span>
+          <InputText
+            id="title"
+            name="title"
+            value={supportformData.title}
+            onChange={(e) => handleInputChange(e, "support")}
+            placeholder="제목 입력"
+          />
+        </div>
 
+        {/* 링크 입력 */}
+        <div className="p-field">
+          <span>링크</span>
+          <InputText
+            id="link"
+            name="link"
+            value={supportformData.link}
+            onChange={(e) => handleInputChange(e, "support")}
+            placeholder="링크 입력"
+          />
+        </div>
+
+        <div className="p-field">
+          <span>지역</span>
+          <Dropdown
+            value={supportformData.region}
+            options={regionOptions}
+            onChange={(e) =>
+              setSupportFormData((prev) => ({
+                ...prev,
+                region: e.value,
+              }))
+            }
+            placeholder="지역 선택"
+            className="dropdown"
+          />
+        </div>
+        {/* 저장 및 취소 버튼 */}
+        <div className="dialog-footer">
+          <Button
+            label="저장"
+            icon="pi pi-check"
+            onClick={handleSaveSupportBoard}
+          />
+          <Button
+            label="취소"
+            icon="pi pi-times"
+            className="p-button-secondary"
+            onClick={() => {
+              setShowSupportDialog(false);
+              setSupportFormData({ title: "", link: "", region: "전체" });
+              setEditingSite(null); // 편집 중
+            }}
+          />
+        </div>
+      </Dialog>
       <Dialog
         header={isEditMode ? "사이트 정보 수정" : "사이트 정보 추가"}
         visible={showDialog}
@@ -295,7 +524,7 @@ function HelpInfoAdmin() {
             id="title"
             name="title"
             value={formData.title}
-            onChange={handleInputChange}
+            onChange={(e) => handleInputChange(e, "site")}
             placeholder="제목 입력"
           />
         </div>
@@ -307,7 +536,8 @@ function HelpInfoAdmin() {
             id="link"
             name="link"
             value={formData.link}
-            onChange={handleInputChange}
+            onChange={(e) => handleInputChange(e, "site")}
+            // onChange={handleInputChange}
             placeholder="링크 입력"
           />
         </div>
@@ -319,7 +549,8 @@ function HelpInfoAdmin() {
             id="description"
             name="description"
             value={formData.description}
-            onChange={handleInputChange}
+            onChange={(e) => handleInputChange(e, "site")}
+            // onChange={handleInputChange}
             placeholder="내용 입력"
             rows={2}
           />
@@ -327,7 +558,7 @@ function HelpInfoAdmin() {
 
         {/* 저장 및 취소 버튼 */}
         <div className="dialog-footer">
-          <Button label="저장" icon="pi pi-check" onClick={handleSave} />
+          <Button label="저장" icon="pi pi-check" onClick={handleSiteSave} />
           <Button
             label="취소"
             icon="pi pi-times"

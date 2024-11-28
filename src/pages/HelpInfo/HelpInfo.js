@@ -9,7 +9,7 @@ import { Column } from "primereact/column";
 import "./HelpInfo.scss";
 
 function HelpInfo() {
-  const { siteList } = useHelpInfo();
+  const { siteList, supportList, region, setRegion } = useHelpInfo();
   const [numVisible, setNumVisible] = useState(3); // 초기값 설정
 
   useEffect(() => {
@@ -82,7 +82,9 @@ function HelpInfo() {
         <span className="header-title">창업 지원 정보</span>
         <div className="header-selects">
           <Dropdown
+            value={region}
             options={regionOptions}
+            onChange={(e) => setRegion(e.value)}
             placeholder="지역 선택"
             className="dropdown"
           />
@@ -97,26 +99,25 @@ function HelpInfo() {
             numVisible={numVisible}
             numScroll={1} // 항상 한 번에 하나씩 스크롤
             circular
-            autoplayInterval={2000}
+            autoplayInterval={5000}
             itemTemplate={siteTemplate}
           />
         </Panel>
       </div>
       <div className="card">
         <Panel header="지원 게시글" toggleable className="panel">
-          <DataTable value={null} paginator rows={5} className="helpInfo-table">
-            <Column
-              field="store_name"
-              header="지역"
-              body={(rowData) => (
-                <span className="helpInfo-store-link">
-                  {rowData.store_name}
-                </span>
-              )}
-            />
-            <Column field="avg_monthly_sales" header="제목" />
-            <Column field="franchise_fee" header="날짜" />
-            <Column field="store_count" header="매장 수" />
+          <DataTable
+            value={supportList}
+            paginator
+            rows={5}
+            className="basic-table"
+            onRowClick={(e) => window.open(e.data.link, "_blank")}
+            rowClassName={() => "table-row"}
+            emptyMessage="게시글이 없습니다."
+          >
+            <Column field="title" header="제목" />
+            <Column field="region" header="지역구분" />
+            <Column field="createdAt" header="날짜" />
           </DataTable>
         </Panel>
       </div>
