@@ -25,17 +25,17 @@ function BrandInfo({ basicInfo, newsData = [] }) {
         </div>
         <div className="brand-info-item">
           <span className="brand-info-label">영업표지명 (브랜드명)</span>
-          <span className="brand-info-value highlight">
+          <span className="brand-info-value highlight ff-msl">
             {basicInfo.business_mark}
           </span>
         </div>
         <div className="brand-info-item">
           <span className="brand-info-label">회사분류</span>
-          <span className="brand-info-value">{basicInfo.industry}</span>
+          <span className="brand-info-value ff-msl">{basicInfo.industry}</span>
         </div>
         <div className="brand-info-item">
           <span className="brand-info-label">등록번호</span>
-          <span className="brand-info-value">
+          <span className="brand-info-value ff-msl">
             {basicInfo.registration_number}
           </span>
         </div>
@@ -46,25 +46,31 @@ function BrandInfo({ basicInfo, newsData = [] }) {
         <h4>기업 정보</h4>
         <div className="brand-info-item">
           <span className="brand-info-label">상호명</span>
-          <span className="brand-info-value highlight">
+          <span className="brand-info-value highligh ff-msl">
             {basicInfo.company_name}
           </span>
         </div>
         <div className="brand-info-item">
           <span className="brand-info-label">대표자</span>
-          <span className="brand-info-value">{basicInfo.representative}</span>
+          <span className="brand-info-value ff-msl">
+            {basicInfo.representative}
+          </span>
         </div>
         <div className="brand-info-item">
           <span className="brand-info-label">사업자유형</span>
-          <span className="brand-info-value">{basicInfo.business_type}</span>
+          <span className="brand-info-value ff-msl">
+            {basicInfo.business_type}
+          </span>
         </div>
         <div className="brand-info-item">
           <span className="brand-info-label">회사주소</span>
-          <span className="brand-info-value">{basicInfo.address}</span>
+          <span className="brand-info-value ff-msl">{basicInfo.address}</span>
         </div>
         <div className="brand-info-item">
           <span className="brand-info-label">대표번호</span>
-          <span className="brand-info-value">{basicInfo.phone_number}</span>
+          <span className="brand-info-value ff-msl">
+            {basicInfo.phone_number}
+          </span>
         </div>
       </div>
 
@@ -83,7 +89,7 @@ function BrandInfo({ basicInfo, newsData = [] }) {
                   onClick={() => window.open(news.link, "_blank")} // 클릭 시 새 탭에서 링크 열기
                 >
                   <p className="news-title">{news.title}</p>
-                  <p className="news-description">{news.description}</p>
+                  <p className="news-description ff-msl">{news.description}</p>
                   <p className="news-date">{news.pubDate}</p>
                 </div>
               ))}

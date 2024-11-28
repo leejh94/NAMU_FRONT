@@ -7,7 +7,7 @@ import { Column } from "primereact/column";
 import { Chart } from "primereact/chart";
 import "./Stats.scss";
 import { useStats } from "../../hooks/useStats";
-import { formatCurrency } from "../../util/formatCurrency";
+import { formatCurrency, formatCurrency2 } from "../../util/formatCurrency";
 import { useNavigate } from "react-router-dom";
 
 function Stats() {
@@ -147,6 +147,7 @@ function Stats() {
         ticks: {
           font: {
             family: "Maplestory Bold",
+            size: "14px",
           },
         },
       },
@@ -156,6 +157,7 @@ function Stats() {
         ticks: {
           font: {
             family: "Maplestory Bold",
+            size: "16px",
           },
           callback: function (value) {
             return formatCurrency(value);
@@ -168,6 +170,7 @@ function Stats() {
         ticks: {
           font: {
             family: "Maplestory Bold",
+            size: "16px",
           },
           callback: function (value) {
             return value + "개";
@@ -209,17 +212,31 @@ function Stats() {
           />
         </div>
       </div>
-
       <div className="stats-summary card">
         <div className="summary-box">
-          <h4>{region} 지역 전체 업종 월매출</h4>
-          <p>{formatCurrency(totalAverageSales)}</p>
+          <h4>
+            {region} 지역<br></br>전체 업종 월매출
+          </h4>
+          <p>{formatCurrency2(totalAverageSales)}</p>
         </div>
         <div className="summary-box">
           <h4>
-            {region} 지역 {industry} 업종 월매출
+            {region} 지역<br></br>
+            {industry} 업종 월매출
           </h4>
           <p>
+            {formatCurrency2(specificIndustrySales)}
+            {difference !== 0 && (
+              <span
+                className="comparison"
+                style={{ color: isHigher ? "red" : "blue" }}
+              >
+                {comparisonText.replace("만원", "")}
+                <span className="currency-unit">만원</span>
+              </span>
+            )}
+          </p>
+          {/* <p>
             {formatCurrency(specificIndustrySales)}
             {difference !== 0 && (
               <span
@@ -229,10 +246,9 @@ function Stats() {
                 {comparisonText}
               </span>
             )}
-          </p>
+          </p> */}
         </div>
       </div>
-
       <div className="card">
         <Panel
           header="업종별 매출 평균 및 신규 개점 수"
@@ -246,17 +262,22 @@ function Stats() {
       {/* 매출 상위 매장 */}
       <div className="card">
         <Panel header="매출 상위 매장" toggleable className="panel">
-          <DataTable value={topSales} paginator rows={5} className="table">
+          <DataTable
+            value={topSales}
+            paginator
+            rows={5}
+            className="basic-table"
+            onRowClick={(e) => {
+              handleStoreNameClick(e.data.store_name);
+            }}
+            rowClassName={() => "table-row"}
+            emptyMessage="게시글이 없습니다."
+          >
             <Column
               field="store_name"
               header="매장명"
               body={(rowData) => (
-                <span
-                  className="store-link"
-                  onClick={() => handleStoreNameClick(rowData.store_name)}
-                >
-                  {rowData.store_name}
-                </span>
+                <span className="store-link">{rowData.store_name}</span>
               )}
             />
             <Column
@@ -281,18 +302,18 @@ function Stats() {
             value={lowestFranchiseFeeStores}
             paginator
             rows={5}
-            className="table"
+            className="basic-table"
+            onRowClick={(e) => {
+              handleStoreNameClick(e.data.store_name);
+            }}
+            rowClassName={() => "table-row"}
+            emptyMessage="게시글이 없습니다."
           >
             <Column
               field="store_name"
               header="매장명"
               body={(rowData) => (
-                <span
-                  className="store-link"
-                  onClick={() => handleStoreNameClick(rowData.store_name)}
-                >
-                  {rowData.store_name}
-                </span>
+                <span className="store-link">{rowData.store_name}</span>
               )}
             />
             <Column

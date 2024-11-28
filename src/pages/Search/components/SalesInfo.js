@@ -208,13 +208,15 @@ function SalesInfo({
       <div className="sales-info-card sales-info-details">
         <h4>참고</h4>
         <ul>
-          <li>
-            해당 데이터는 공정거래위원회에서 제공하는 정보공개서를 기반으로
+          <li className="ff-msl">
+            - 해당 데이터는 공정거래위원회에서 제공하는 정보공개서를 기반으로
             합니다.
           </li>
-          <li>정보공개서에 데이터가 없을 수도 있습니다.</li>
-          <li>
-            해당 데이터는 {salesInfo?.report_year || "연도 정보 없음"}년
+          <li className="ff-msl">
+            - 정보공개서에 데이터가 없을 수도 있습니다.
+          </li>
+          <li className="ff-msl">
+            - 해당 데이터는 {salesInfo?.report_year || "연도 정보 없음"}년
             기준입니다.
           </li>
         </ul>

@@ -47,65 +47,8 @@
       .helpInfo-carousel-description {
         font-size: 0.8rem;
         color: $text-color;
+        font-family: "Maplestory Light";
       }
-    }
-  }
-}
-
-.helpInfo-table {
-  .helpInfo-store-link {
-    cursor: pointer;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  .p-datatable-thead > tr > th {
-    background-color: $card-background-color;
-    color: $card-h4-color;
-    padding: 10px;
-
-    @media (max-width: 768px) {
-      font-size: 0.5rem;
-    }
-  }
-
-  .p-datatable-tbody > tr > td {
-    width: 20%;
-    padding: 8px 12px;
-    font-size: 1rem;
-    color: $text-color;
-
-    @media (max-width: 768px) {
-      font-size: 0.5rem;
-    }
-
-    &:first-child {
-      width: 45%;
-      text-decoration: underline;
-      color: $primary-color;
-    }
-
-    &:last-child {
-      width: 15%;
-    }
-  }
-
-  .p-datatable-tbody > tr:nth-child(odd) > td {
-    background-color: $card-border-color;
-  }
-
-  .p-datatable-tbody > tr:nth-child(even) > td {
-    background-color: $card-background-color;
-  }
-}
-
-.p-paginator-bottom {
-  .p-paginator-element {
-    @media (max-width: 768px) {
-      padding: 0rem;
-      font-size: 0.6rem;
     }
   }
 }
