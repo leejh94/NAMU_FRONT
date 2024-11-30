@@ -1,69 +1,71 @@
-// // src/pages/Login/Login.scss
+// src/pages/Login/Login.scss
 @import "../../App.scss";
 
-.login-page {
-  padding: 20px;
+.login-area {
   width: 100%;
-  overflow: hidden;
-  background-color: $background-color;
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  .logo {
+    text-align: center;
+    padding: 30px;
+    font-size: 5rem;
+    color: $primary-color;
+  }
+}
 
-  .login-card {
+.p-tabmenu {
+  margin-bottom: 1rem;
+}
+
+.p-tabmenu-nav {
+  justify-content: center;
+  background-color: $card-background-color;
+}
+
+.p-tabmenu-nav li {
+  // border-bottom: 3px solid $card-border-color;
+  padding: 20px;
+
+  a {
     background-color: $card-background-color;
-    border-radius: $card-border-radius;
-    border: 3px solid $card-border-color;
-    padding: 1rem;
-    box-shadow: $card-box-shadow;
-
-    .p-tabmenu {
-      margin-bottom: 1rem;
+    span {
+      font-size: 2rem;
     }
+  }
+}
 
-    .p-tabmenu-nav {
-      justify-content: center;
-      background-color: $card-background-color;
-    }
+.login-item {
+  display: flex;
+  justify-content: center;
+  padding: 0.7rem 0;
 
-    .p-tabmenu-nav li {
-      border-bottom: 3px solid $card-border-color;
-      padding: 0.5rem 1rem;
+  img {
+    cursor: pointer;
+  }
+}
 
-      a {
-        background-color: $card-background-color;
-        span {
-          font-size: 30px;
-        }
-      }
-    }
+.admin-login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    .login-item {
-      display: flex;
-      justify-content: center;
-      padding: 0.7rem 0;
+  .p-inputgroup {
+    width: 50%;
+    margin: 10px;
+    // margin: 0.5rem 0;
+  }
 
-      img {
-        cursor: pointer;
-      }
-    }
+  .admin-input {
+    height: 60px;
+    font-size: 1.5rem;
+    font-family: "Maplestory Bold";
+  }
 
-    .admin-login-form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      .p-inputgroup {
-        width: 50%;
-        margin: 0.5rem 0;
-      }
-
-      .admin-input {
-        width: 100%;
-        font-family: "Maplestory Bold";
-      }
-
-      .login-button {
-        width: 50%;
-        margin-top: 1rem;
-      }
-    }
+  .login-button {
+    width: 50%;
+    font-size: 1.5rem;
+    height: 60px;
+    margin-top: 20px;
   }
 }
