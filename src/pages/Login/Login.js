@@ -40,53 +40,64 @@ function Login() {
     handleAdminLogin(username, password);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      onAdminLoginClick();
+    }
+  };
+
   return (
-    <div className="login-page">
-      <div className="login-card">
-        <TabMenu
-          model={items}
-          activeIndex={activeIndex}
-          onTabChange={(e) => setActiveIndex(e.index)}
-        />
-        {activeIndex === 0 ? (
-          <div className="login-item">
-            <img
-              src={kakaoLoginImage}
-              alt="카카오 로그인 이미지"
-              onClick={onKakaoLoginClick}
-              style={{ cursor: "pointer" }}
-            />
-          </div>
-        ) : (
-          <div className="admin-login-form">
-            <div className="p-inputgroup">
-              <InputText
-                type="text"
-                placeholder="아이디"
-                name="username"
-                value={adminCredentials.username}
-                onChange={handleInputChange}
-                className="admin-input"
+    <div className="pages-container">
+      <div className="pages-header card">
+        <div className="login-area">
+          <span className="logo">창업나무</span>
+          <TabMenu
+            model={items}
+            activeIndex={activeIndex}
+            onTabChange={(e) => setActiveIndex(e.index)}
+          />
+          {activeIndex === 0 ? (
+            <div className="login-item">
+              <img
+                src={kakaoLoginImage}
+                alt="카카오 로그인 이미지"
+                onClick={onKakaoLoginClick}
+                style={{ cursor: "pointer" }}
               />
             </div>
-            <div className="p-inputgroup">
-              <InputText
-                type="password"
-                placeholder="비밀번호"
-                name="password"
-                value={adminCredentials.password}
-                onChange={handleInputChange}
-                className="admin-input"
+          ) : (
+            <div className="admin-login-form">
+              <div className="p-inputgroup">
+                <InputText
+                  type="text"
+                  placeholder="아이디"
+                  name="username"
+                  value={adminCredentials.username}
+                  onChange={handleInputChange}
+                  className="admin-input"
+                  onKeyDown={handleKeyDown}
+                />
+              </div>
+              <div className="p-inputgroup">
+                <InputText
+                  type="password"
+                  placeholder="비밀번호"
+                  name="password"
+                  value={adminCredentials.password}
+                  onChange={handleInputChange}
+                  className="admin-input"
+                  onKeyDown={handleKeyDown}
+                />
+              </div>
+              <Button
+                label="로그인"
+                icon="pi pi-sign-in"
+                className="login-button"
+                onClick={onAdminLoginClick}
               />
             </div>
-            <Button
-              label="로그인"
-              icon="pi pi-sign-in"
-              className="login-button"
-              onClick={onAdminLoginClick}
-            />
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
