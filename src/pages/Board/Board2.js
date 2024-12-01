@@ -34,6 +34,38 @@ function Board() {
     { label: "추천순 (한달)", value: "recommend_month" },
   ];
 
+  // const itemTemplate = (post) => (
+  //   <div className="post-item card">
+  //     <div className="post-header">
+  //       <p className="channel ff-msl">{channel.channelName}</p>
+  //       <p className="title">{post.title}</p>
+  //       <p className="title">{post.content}</p>
+  //     </div>
+
+  //     <div className="post-content">
+  //       <p className="nickname ff-msl">작성자 : {post.nickname}</p>
+  //     </div>
+
+  //     <div className="post-footer">
+  //       <div>
+  //         <p className="pi pi-eye">
+  //           <span className="ff-msl"> {post.viewCount}</span>
+  //         </p>
+  //         <p className="pi pi-thumbs-up">
+  //           <span className="ff-msl">{post.viewCount}</span>
+  //         </p>
+  //         <p className="pi pi-comment">
+  //           <span className="ff-msl">{post.commentCount}</span>
+  //         </p>
+  //       </div>
+  //       <div>
+  //         <p className="pi pi-calendar-clock">
+  //           <span className="ff-msl">{post.createdAt}</span>
+  //         </p>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
   const itemTemplate = (post) => {
     // content에서 img 태그 추출
     const extractImages = (content) => {

@@ -8,6 +8,8 @@ import Main from "./pages/Main";
 import Search from "./pages/Search/Search";
 import Stats from "./pages/Stats/Stats";
 import Board from "./pages/Board/Board";
+import Board2 from "./pages/Board/Board2";
+import BoardAdd from "./pages/Board/BoardAdd";
 import HelpInfo from "./pages/HelpInfo/HelpInfo";
 import HelpInfoAdmin from "./pages/HelpInfo/HelpInfoAdmin";
 import Login from "./pages/Login/Login";
@@ -46,6 +48,8 @@ function App() {
           <Route path="/helpInfo" element={<HelpInfo />} />
           <Route path="/helpInfoAdmin" element={<HelpInfoAdmin />} />
           <Route path="/board" element={<Board />} />
+          <Route path="/board2" element={<Board2 />} />
+          <Route path="/boardAdd" element={<BoardAdd />} />
           <Route path="/login" element={<Login />} />
           <Route path="/auth/login/callback" element={<KakaoRedirect />} />
         </Routes>
