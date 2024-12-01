@@ -20,20 +20,24 @@ npm install @mui/icons-material
 
 
 npm install @nivo/pie @nivo/core
-
+#scss
 npm install sass
-
+# 아이콘
 npm install primereact primeicons primeflex
-
+# 차트
 npm install chart.js
-
+# 지도
 npm install react-simple-maps d3-geo
-
+# xml 파싱
 npm install xml2js
-
+#쿠키
 npm install js-cookie
-
+#드래그앤드랍
 npm install @hello-pangea/dnd
+# Editor
+npm install quill
+# HEIC 파일 변환
+npm install heic2any
 
 ```
 
