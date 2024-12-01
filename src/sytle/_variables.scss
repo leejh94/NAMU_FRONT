@@ -1,0 +1,32 @@
+// src/styles/_variables.scss
+// Colors
+$primary-color: #1565c0;
+$secondary-color: #90caf9;
+$accent-color: #66bb6a;
+$background-color: #f5f5f5;
+$border-color: #b0bec5;
+$hover-color: #ced4da;
+$table-border-color: #ebebeb;
+
+$fz-data: 24px;
+
+// 카드 영역 색상
+$card-background-color: #f9f9f9;
+$card-border-color: #ddd;
+$card-h4-color: #333;
+$card-label-color: #666;
+$card-highlight-color: #c0392b;
+$card-cost-value-color: #d9534f;
+$card-shadow-color: rgba(0, 0, 0, 0.1);
+$text-color: #333333;
+
+// Font Sizes
+$card-h4-font-size: 1.2rem;
+$card-item-font-size: 1rem;
+$card-description-font-size: 0.85rem;
+$card-date-font-size: 0.75rem;
+
+// Other styles
+$card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$card-box-shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.2);
+$card-border-radius: 8px;

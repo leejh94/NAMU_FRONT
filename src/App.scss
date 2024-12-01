@@ -1,435 +1,438 @@
+// @import "./sytle/global.scss";
+@use "./sytle/global.scss";
+
 // src/App.scss
 // App.scss
-$primary-color: #1565c0;
-$secondary-color: #90caf9;
-$accent-color: #66bb6a;
-$background-color: #f5f5f5;
-$border-color: #b0bec5;
-$hover-color: #ced4da;
-$table-border-color: #ebebeb;
+// $primary-color: #1565c0;
+// $secondary-color: #90caf9;
+// $accent-color: #66bb6a;
+// $background-color: #f5f5f5;
+// $border-color: #b0bec5;
+// $hover-color: #ced4da;
+// $table-border-color: #ebebeb;
 
-$fz-data: 24px;
+// $fz-data: 24px;
 
-// 카드 영역 색상
-$card-background-color: #f9f9f9;
-$card-border-color: #ddd;
-$card-h4-color: #333;
-$card-label-color: #666;
-$card-highlight-color: #c0392b;
-$card-cost-value-color: #d9534f;
-$card-shadow-color: rgba(0, 0, 0, 0.1);
-$text-color: #333333;
+// // 카드 영역 색상
+// $card-background-color: #f9f9f9;
+// $card-border-color: #ddd;
+// $card-h4-color: #333;
+// $card-label-color: #666;
+// $card-highlight-color: #c0392b;
+// $card-cost-value-color: #d9534f;
+// $card-shadow-color: rgba(0, 0, 0, 0.1);
+// $text-color: #333333;
 
-// Font Sizes
-$card-h4-font-size: 1.2rem;
-$card-item-font-size: 1rem;
-$card-description-font-size: 0.85rem;
-$card-date-font-size: 0.75rem;
+// // Font Sizes
+// $card-h4-font-size: 1.2rem;
+// $card-item-font-size: 1rem;
+// $card-description-font-size: 0.85rem;
+// $card-date-font-size: 0.75rem;
 
-// Other styles
-$card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-$card-box-shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.2);
-$card-border-radius: 8px;
+// // Other styles
+// $card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+// $card-box-shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.2);
+// $card-border-radius: 8px;
 
-/* CSS Reset */
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
-body {
-  line-height: 1;
-}
-ol,
-ul {
-  list-style: none;
-}
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
+// /* CSS Reset */
+// html,
+// body,
+// div,
+// span,
+// applet,
+// object,
+// iframe,
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6,
+// p,
+// blockquote,
+// pre,
+// a,
+// abbr,
+// acronym,
+// address,
+// big,
+// cite,
+// code,
+// del,
+// dfn,
+// em,
+// img,
+// ins,
+// kbd,
+// q,
+// s,
+// samp,
+// small,
+// strike,
+// strong,
+// sub,
+// sup,
+// tt,
+// var,
+// b,
+// u,
+// i,
+// center,
+// dl,
+// dt,
+// dd,
+// ol,
+// ul,
+// li,
+// fieldset,
+// form,
+// label,
+// legend,
+// table,
+// caption,
+// tbody,
+// tfoot,
+// thead,
+// tr,
+// th,
+// td,
+// article,
+// aside,
+// canvas,
+// details,
+// embed,
+// figure,
+// figcaption,
+// footer,
+// header,
+// hgroup,
+// menu,
+// nav,
+// output,
+// ruby,
+// section,
+// summary,
+// time,
+// mark,
+// audio,
+// video {
+//   margin: 0;
+//   padding: 0;
+//   border: 0;
+//   font-size: 100%;
+//   font: inherit;
+//   vertical-align: baseline;
+// }
+// /* HTML5 display-role reset for older browsers */
+// article,
+// aside,
+// details,
+// figcaption,
+// figure,
+// footer,
+// header,
+// hgroup,
+// menu,
+// nav,
+// section {
+//   display: block;
+// }
+// body {
+//   line-height: 1;
+// }
+// ol,
+// ul {
+//   list-style: none;
+// }
+// blockquote,
+// q {
+//   quotes: none;
+// }
+// blockquote:before,
+// blockquote:after,
+// q:before,
+// q:after {
+//   content: "";
+//   content: none;
+// }
+// table {
+//   border-collapse: collapse;
+//   border-spacing: 0;
+// }
 
-/* Font 설정 */
-@font-face {
-  font-family: "Maplestory Bold";
-  src: url("./assets/fonts/Maplestory Bold.ttf") format("truetype");
-}
+// /* Font 설정 */
+// @font-face {
+//   font-family: "Maplestory Bold";
+//   src: url("./assets/fonts/Maplestory Bold.ttf") format("truetype");
+// }
 
-@font-face {
-  font-family: "Maplestory Light";
-  src: url("./assets/fonts/Maplestory Light.ttf") format("truetype");
-}
+// @font-face {
+//   font-family: "Maplestory Light";
+//   src: url("./assets/fonts/Maplestory Light.ttf") format("truetype");
+// }
 
-html,
-body,
-#root {
-  height: 100%; // 전체 높이 100% 설정
-  margin: 0;
-  padding: 0;
-  font-family: "Maplestory Bold"; // 기본 폰트 설정
-}
+// html,
+// body,
+// #root {
+//   height: 100%; // 전체 높이 100% 설정
+//   margin: 0;
+//   padding: 0;
+//   font-family: "Maplestory Bold"; // 기본 폰트 설정
+// }
 
-#root {
-  /* 공통 스타일 */
-  overflow-y: scroll;
-  /* 스크롤바 트랙 */
-  &::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-    border-radius: 10px; // 모서리 둥글게
-  }
+// #root {
+//   /* 공통 스타일 */
+//   overflow-y: scroll;
+//   /* 스크롤바 트랙 */
+//   &::-webkit-scrollbar-track {
+//     background-color: #f1f1f1;
+//     border-radius: 10px; // 모서리 둥글게
+//   }
 
-  /* 스크롤바 자체 */
-  &::-webkit-scrollbar {
-    width: 10px; // 스크롤바의 너비
-  }
+//   /* 스크롤바 자체 */
+//   &::-webkit-scrollbar {
+//     width: 10px; // 스크롤바의 너비
+//   }
 
-  /* 스크롤바 핸들 (드래그하는 부분) */
-  &::-webkit-scrollbar-thumb {
-    background-color: #888; // 핸들의 색상
-    border-radius: 10px; // 핸들의 둥근 정도
-    border: 2px solid #f1f1f1; // 핸들의 외곽선
-  }
+//   /* 스크롤바 핸들 (드래그하는 부분) */
+//   &::-webkit-scrollbar-thumb {
+//     background-color: #888; // 핸들의 색상
+//     border-radius: 10px; // 핸들의 둥근 정도
+//     border: 2px solid #f1f1f1; // 핸들의 외곽선
+//   }
 
-  /* 스크롤바 핸들 hover 시 */
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: #555; // hover 시 색상 변경
-  }
-}
+//   /* 스크롤바 핸들 hover 시 */
+//   &::-webkit-scrollbar-thumb:hover {
+//     background-color: #555; // hover 시 색상 변경
+//   }
+// }
 
-/* 전역 스타일 설정 */
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+// /* 전역 스타일 설정 */
+// body {
+//   display: flex;
+//   flex-direction: column;
+//   min-height: 100vh;
+// }
 
-// 공통 카드 css
-.card {
-  background-color: $card-background-color;
-  border-radius: $card-border-radius;
-  box-shadow: $card-box-shadow;
-  padding: 1.5rem;
-  border: 3px solid $card-border-color;
+// // 공통 카드 css
+// .card {
+//   background-color: $card-background-color;
+//   border-radius: $card-border-radius;
+//   box-shadow: $card-box-shadow;
+//   padding: 1.5rem;
+//   border: 3px solid $card-border-color;
 
-  @media (max-width: 1000px) {
-    padding: 1rem;
-  }
-}
+//   @media (max-width: 1000px) {
+//     padding: 1rem;
+//   }
+// }
 
-// 공통 페이지 컨테이너 css
-.pages-container {
-  width: 90%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  // border: 3px solid #ddd;
-  // border-radius: 8px;
-  padding: 20px;
-  background-color: #fafafa;
-  max-width: 1920px;
-  @media (max-width: 1000px) {
-    width: 100%;
-    padding: 5px;
-    padding-top: 10px;
-    border: 0px;
-  }
-  // 공통 페이지 헤더 css
-  .pages-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+// // 공통 페이지 컨테이너 css
+// .pages-container {
+//   width: 90%;
+//   margin: 0 auto;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 0.5rem;
+//   // border: 3px solid #ddd;
+//   // border-radius: 8px;
+//   padding: 20px;
+//   background-color: #fafafa;
+//   max-width: 1920px;
+//   @media (max-width: 1000px) {
+//     width: 100%;
+//     padding: 5px;
+//     padding-top: 10px;
+//     border: 0px;
+//   }
+//   // 공통 페이지 헤더 css
+//   .pages-header {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
 
-    @media (max-width: 768px) {
-      text-align: center;
-      display: block;
-    }
+//     @media (max-width: 768px) {
+//       text-align: center;
+//       display: block;
+//     }
 
-    .header-title {
-      font-size: 1.8rem;
-      color: $card-h4-color;
-      font-weight: bold;
-      @media (max-width: 768px) {
-        font-size: 1.5rem;
-      }
-    }
-    // 공통 카드 헤더 셀렉트 태그 css
-    .header-selects {
-      display: flex;
-      gap: 1rem;
-      @media (max-width: 768px) {
-        justify-content: center;
-        gap: 0.5rem;
-      }
+//     .header-title {
+//       font-size: 1.8rem;
+//       color: $card-h4-color;
+//       font-weight: bold;
+//       @media (max-width: 768px) {
+//         font-size: 1.5rem;
+//       }
+//     }
+//     // 공통 카드 헤더 셀렉트 태그 css
+//     .header-selects {
+//       display: flex;
+//       gap: 1rem;
+//       @media (max-width: 768px) {
+//         justify-content: center;
+//         gap: 0.5rem;
+//       }
 
-      .dropdown {
-        font-family: "Maplestory Light";
-        width: 160px;
-        height: 40px;
-        text-align: center;
-        align-items: center;
-        background-color: $card-background-color;
-        border: 1px solid $border-color;
-        font-size: 1.3rem;
-        color: $text-color;
-        @media (max-width: 768px) {
-          width: 90px;
-          height: 30px;
-          font-size: 0.8rem;
-        }
-      }
-    }
-  }
-}
-// 공통 select 태그 css
-.p-dropdown-items-wrapper {
-  /* 공통 스타일 */
-  overflow-y: scroll;
-  /* 스크롤바 트랙 */
-  &::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-    border-radius: 10px; // 모서리 둥글게
-  }
+//       .dropdown {
+//         font-family: "Maplestory Light";
+//         width: 160px;
+//         height: 40px;
+//         text-align: center;
+//         align-items: center;
+//         background-color: $card-background-color;
+//         border: 1px solid $border-color;
+//         font-size: 1.3rem;
+//         color: $text-color;
+//         @media (max-width: 768px) {
+//           width: 90px;
+//           height: 30px;
+//           font-size: 0.8rem;
+//         }
+//       }
+//     }
+//   }
+// }
+// // 공통 select 태그 css
+// .p-dropdown-items-wrapper {
+//   /* 공통 스타일 */
+//   overflow-y: scroll;
+//   /* 스크롤바 트랙 */
+//   &::-webkit-scrollbar-track {
+//     background-color: #f1f1f1;
+//     border-radius: 10px; // 모서리 둥글게
+//   }
 
-  /* 스크롤바 자체 */
-  &::-webkit-scrollbar {
-    width: 10px; // 스크롤바의 너비
-  }
+//   /* 스크롤바 자체 */
+//   &::-webkit-scrollbar {
+//     width: 10px; // 스크롤바의 너비
+//   }
 
-  /* 스크롤바 핸들 (드래그하는 부분) */
-  &::-webkit-scrollbar-thumb {
-    background-color: #888; // 핸들의 색상
-    border-radius: 10px; // 핸들의 둥근 정도
-    border: 2px solid #f1f1f1; // 핸들의 외곽선
-  }
+//   /* 스크롤바 핸들 (드래그하는 부분) */
+//   &::-webkit-scrollbar-thumb {
+//     background-color: #888; // 핸들의 색상
+//     border-radius: 10px; // 핸들의 둥근 정도
+//     border: 2px solid #f1f1f1; // 핸들의 외곽선
+//   }
 
-  /* 스크롤바 핸들 hover 시 */
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: #555; // hover 시 색상 변경
-  }
-  .p-dropdown-item {
-    font-family: "Maplestory Light";
-    justify-content: center;
-    font-size: 1.3rem;
-    padding: 10px;
-    &:hover {
-      // background-color: $hover-color;
-      background-color: $card-border-color;
-      // font-size: 2rem;
-    }
-    @media (max-width: 768px) {
-      font-size: 0.8rem;
-      &:hover {
-        // font-size: 1rem;
-      }
-    }
-  }
-}
-.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight.p-focus {
-  background-color: $hover-color;
-}
+//   /* 스크롤바 핸들 hover 시 */
+//   &::-webkit-scrollbar-thumb:hover {
+//     background-color: #555; // hover 시 색상 변경
+//   }
+//   .p-dropdown-item {
+//     font-family: "Maplestory Light";
+//     justify-content: center;
+//     font-size: 1.3rem;
+//     padding: 10px;
+//     &:hover {
+//       // background-color: $hover-color;
+//       background-color: $card-border-color;
+//       // font-size: 2rem;
+//     }
+//     @media (max-width: 768px) {
+//       font-size: 0.8rem;
+//       &:hover {
+//         // font-size: 1rem;
+//       }
+//     }
+//   }
+// }
+// .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight.p-focus {
+//   background-color: $hover-color;
+// }
 
-// 공통 panel css
-.panel {
-  background-color: $card-background-color;
-  padding: 1rem;
+// // 공통 panel css
+// .panel {
+//   background-color: $card-background-color;
+//   padding: 1rem;
 
-  .p-panel-header {
-    padding: 15px 15px 15px 0;
-    font-size: 1.8rem;
-    color: $card-h4-color;
+//   .p-panel-header {
+//     padding: 15px 15px 15px 0;
+//     font-size: 1.8rem;
+//     color: $card-h4-color;
 
-    @media (max-width: 768px) {
-      font-size: 1.6rem;
-    }
-  }
-}
+//     @media (max-width: 768px) {
+//       font-size: 1.6rem;
+//     }
+//   }
+// }
 
-// 공통 테이블 css
-.basic-table {
-  .table-row {
-    cursor: pointer;
-  }
-  // border: 3px solid $card-border-color;
-  // border-top: 3px solid #29367c;
-  // border-radius: 8px;
-  // font-family: "Maplestory Light";
+// // 공통 테이블 css
+// .basic-table {
+//   .table-row {
+//     cursor: pointer;
+//   }
+//   // border: 3px solid $card-border-color;
+//   // border-top: 3px solid #29367c;
+//   // border-radius: 8px;
+//   // font-family: "Maplestory Light";
 
-  .p-datatable-thead > tr > th {
-    // border-top: 3px solid #29367c;
-    // border-bottom: 3px solid #29367c;
-    background-color: $card-border-color;
-    color: $card-h4-color;
-    padding: 12px;
-    font-size: 1.2rem;
+//   .p-datatable-thead > tr > th {
+//     // border-top: 3px solid #29367c;
+//     // border-bottom: 3px solid #29367c;
+//     background-color: $card-border-color;
+//     color: $card-h4-color;
+//     padding: 12px;
+//     font-size: 1.2rem;
 
-    @media (max-width: 768px) {
-      font-size: 0.7rem;
-    }
-  }
-  .p-datatable-tbody {
-    tr {
-      font-family: "Maplestory Light";
+//     @media (max-width: 768px) {
+//       font-size: 0.7rem;
+//     }
+//   }
+//   .p-datatable-tbody {
+//     tr {
+//       font-family: "Maplestory Light";
 
-      td {
-        border: 1px solid $table-border-color;
-      }
-      &:nth-child(odd) > td {
-        // background-color: $card-border-color;
-        // background-color: $card-border-color;
-      }
-      &:nth-child(even) > td {
-        // background-color: $card-background-color;
-        // background-color: $card-background-color;
-      }
-      &:hover > td {
-        background-color: $hover-color;
-        // background-color: $secondary-color;
-      }
-    }
-  }
-  .p-datatable-tbody > tr > td {
-    width: 20%;
-    padding: 12px 12px;
-    font-size: 1.2rem;
-    color: $text-color;
+//       td {
+//         border: 1px solid $table-border-color;
+//       }
+//       &:nth-child(odd) > td {
+//         // background-color: $card-border-color;
+//         // background-color: $card-border-color;
+//       }
+//       &:nth-child(even) > td {
+//         // background-color: $card-background-color;
+//         // background-color: $card-background-color;
+//       }
+//       &:hover > td {
+//         background-color: $hover-color;
+//         // background-color: $secondary-color;
+//       }
+//     }
+//   }
+//   .p-datatable-tbody > tr > td {
+//     width: 20%;
+//     padding: 12px 12px;
+//     font-size: 1.2rem;
+//     color: $text-color;
 
-    @media (max-width: 768px) {
-      font-size: 0.7rem;
-    }
+//     @media (max-width: 768px) {
+//       font-size: 0.7rem;
+//     }
 
-    &:first-child {
-      width: 45%;
-      color: $primary-color;
-    }
+//     &:first-child {
+//       width: 45%;
+//       color: $primary-color;
+//     }
 
-    &:last-child {
-      width: 15%;
-    }
-  }
+//     &:last-child {
+//       width: 15%;
+//     }
+//   }
 
-  .p-paginator-bottom {
-    button {
-      font-family: "Maplestory Bold";
-    }
-    .p-paginator-element {
-      @media (max-width: 768px) {
-        padding: 0rem;
-        font-size: 0.6rem;
-      }
-    }
-  }
-}
+//   .p-paginator-bottom {
+//     button {
+//       font-family: "Maplestory Bold";
+//     }
+//     .p-paginator-element {
+//       @media (max-width: 768px) {
+//         padding: 0rem;
+//         font-size: 0.6rem;
+//       }
+//     }
+//   }
+// }
 
-// 폰트 클래스
-.ff-msl {
-  font-family: "Maplestory Light";
-}
+// // 폰트 클래스
+// .ff-msl {
+//   font-family: "Maplestory Light";
+// }

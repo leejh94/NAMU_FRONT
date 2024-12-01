@@ -1,0 +1,281 @@
+// src/styles/global.scss
+// @import "./_variables.scss";
+// @import "./_reset.scss";
+@use "./_variables" as *;
+@use "./_reset";
+
+/* Font 설정 */
+// @font-face {
+//   font-family: "Maplestory Bold";
+//   src: url("../assets/fonts/SCDream6.otf") format("truetype");
+// }
+
+// @font-face {
+//   font-family: "Maplestory Light";
+//   src: url("../assets/fonts/SCDream2.otf") format("truetype");
+// }
+
+@font-face {
+  font-family: "Maplestory Bold";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/MinSans-Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Maplestory Light";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/MinSans-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "Maplestory Bold";
+  background-color: $background-color;
+  color: $text-color;
+  &::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 10px; // 모서리 둥글게
+  }
+
+  /* 스크롤바 자체 */
+  &::-webkit-scrollbar {
+    width: 10px; // 스크롤바의 너비
+  }
+
+  /* 스크롤바 핸들 (드래그하는 부분) */
+  &::-webkit-scrollbar-thumb {
+    background-color: #888; // 핸들의 색상
+    border-radius: 10px; // 핸들의 둥근 정도
+    border: 2px solid #f1f1f1; // 핸들의 외곽선
+  }
+
+  /* 스크롤바 핸들 hover 시 */
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #555; // hover 시 색상 변경
+  }
+}
+
+// 공통 카드 css
+.card {
+  background-color: $card-background-color;
+  border-radius: $card-border-radius;
+  box-shadow: $card-box-shadow;
+  padding: 1.5rem;
+  border: 3px solid $card-border-color;
+
+  @media (max-width: 1000px) {
+    padding: 1rem;
+  }
+}
+
+// 공통 페이지 컨테이너 css
+.pages-container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  // border: 3px solid #ddd;
+  // border-radius: 8px;
+  padding: 20px;
+  background-color: #fafafa;
+  max-width: 1920px;
+  @media (max-width: 1000px) {
+    width: 100%;
+    padding: 5px;
+    padding-top: 10px;
+    border: 0px;
+  }
+  // 공통 페이지 헤더 css
+  .pages-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media (max-width: 768px) {
+      text-align: center;
+      display: block;
+    }
+
+    .header-title {
+      font-size: 1.8rem;
+      color: $card-h4-color;
+      font-weight: bold;
+      @media (max-width: 768px) {
+        font-size: 1.5rem;
+      }
+    }
+    // 공통 카드 헤더 셀렉트 태그 css
+    .header-selects {
+      display: flex;
+      gap: 1rem;
+      @media (max-width: 768px) {
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .dropdown {
+        font-family: "Maplestory Light";
+        width: 160px;
+        height: 40px;
+        text-align: center;
+        align-items: center;
+        background-color: $card-background-color;
+        border: 1px solid $border-color;
+        font-size: 1.3rem;
+        color: $text-color;
+        @media (max-width: 768px) {
+          width: 90px;
+          height: 30px;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+// 공통 select 태그 css
+.p-dropdown-items-wrapper {
+  /* 공통 스타일 */
+  overflow-y: scroll;
+  /* 스크롤바 트랙 */
+  &::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 10px; // 모서리 둥글게
+  }
+
+  /* 스크롤바 자체 */
+  &::-webkit-scrollbar {
+    width: 10px; // 스크롤바의 너비
+  }
+
+  /* 스크롤바 핸들 (드래그하는 부분) */
+  &::-webkit-scrollbar-thumb {
+    background-color: #888; // 핸들의 색상
+    border-radius: 10px; // 핸들의 둥근 정도
+    border: 2px solid #f1f1f1; // 핸들의 외곽선
+  }
+
+  /* 스크롤바 핸들 hover 시 */
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #555; // hover 시 색상 변경
+  }
+  .p-dropdown-item {
+    font-family: "Maplestory Light";
+    justify-content: center;
+    font-size: 1.3rem;
+    padding: 10px;
+    &:hover {
+      // background-color: $hover-color;
+      background-color: $card-border-color;
+      // font-size: 2rem;
+    }
+    @media (max-width: 768px) {
+      font-size: 0.8rem;
+      &:hover {
+        // font-size: 1rem;
+      }
+    }
+  }
+}
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight.p-focus {
+  background-color: $hover-color;
+}
+
+// 공통 panel css
+.panel {
+  background-color: $card-background-color;
+  padding: 1rem;
+
+  .p-panel-header {
+    padding: 15px 15px 15px 0;
+    font-size: 1.8rem;
+    color: $card-h4-color;
+
+    @media (max-width: 768px) {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+// 공통 테이블 css
+.basic-table {
+  .table-row {
+    cursor: pointer;
+  }
+  // border: 3px solid $card-border-color;
+  // border-top: 3px solid #29367c;
+  // border-radius: 8px;
+  // font-family: "Maplestory Light";
+
+  .p-datatable-thead > tr > th {
+    // border-top: 3px solid #29367c;
+    // border-bottom: 3px solid #29367c;
+    background-color: $card-border-color;
+    color: $card-h4-color;
+    padding: 12px;
+    font-size: 1.2rem;
+
+    @media (max-width: 768px) {
+      font-size: 0.7rem;
+    }
+  }
+  .p-datatable-tbody {
+    tr {
+      font-family: "Maplestory Light";
+
+      td {
+        border: 1px solid $table-border-color;
+      }
+      &:nth-child(odd) > td {
+        // background-color: $card-border-color;
+        // background-color: $card-border-color;
+      }
+      &:nth-child(even) > td {
+        // background-color: $card-background-color;
+        // background-color: $card-background-color;
+      }
+      &:hover > td {
+        background-color: $hover-color;
+        // background-color: $secondary-color;
+      }
+    }
+  }
+  .p-datatable-tbody > tr > td {
+    width: 20%;
+    padding: 12px 12px;
+    font-size: 1.2rem;
+    color: $text-color;
+
+    @media (max-width: 768px) {
+      font-size: 0.7rem;
+    }
+
+    &:first-child {
+      width: 45%;
+      color: $primary-color;
+    }
+
+    &:last-child {
+      width: 15%;
+    }
+  }
+
+  .p-paginator-bottom {
+    button {
+      font-family: "Maplestory Bold";
+    }
+    .p-paginator-element {
+      @media (max-width: 768px) {
+        padding: 0rem;
+        font-size: 0.6rem;
+      }
+    }
+  }
+}
+
+// 폰트 클래스
+.ff-msl {
+  font-family: "Maplestory Light";
+}

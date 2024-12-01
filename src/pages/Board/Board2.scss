@@ -4,7 +4,6 @@
 
 .board-scroll {
   height: 900px; // 원하는 높이 설정
-  padding: 10px;
 
   // overflow-y: auto; // 스크롤 가능하도록 설정
   &::-webkit-scrollbar-track {
@@ -29,10 +28,6 @@
     background-color: #555; // hover 시 색상 변경
   }
 
-  .p-virtualscroller-content {
-    padding: 20px;
-  }
-
   .post-item {
     display: flex;
     flex-direction: column;
@@ -40,11 +35,6 @@
     padding: 30px;
     min-width: 250px;
     height: 250px; //  VirtualScroller의 itemSize와 동일하게 설정
-
-    &:hover {
-      transform: scale(1.02); // 약간 확대 효과
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); // 강조된 그림자 효과
-    }
 
     .post-header {
       .channel {
