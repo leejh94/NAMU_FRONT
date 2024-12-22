@@ -6,6 +6,7 @@ import { Button } from "primereact/button";
 import { VirtualScroller } from "primereact/virtualscroller";
 import { useBoard } from "../../hooks/useBoard";
 import { useNavigate } from "react-router-dom";
+import { useGlobalState } from "../../context/GlobalStateContext";
 import "./Board.scss";
 
 function Board() {
@@ -16,11 +17,14 @@ function Board() {
     sortType,
     setSortType,
     fetchPosts,
+    fetchPost,
     hasMore,
     loading,
   } = useBoard();
 
   const navigate = useNavigate();
+
+  const { globalState, updateGlobalState } = useGlobalState(); // 글로벌 상태 및 업데이트 함수
 
   const channelOptions = [
     { label: "자유", value: { channelName: "자유", channelId: 1 } },
@@ -54,10 +58,20 @@ function Board() {
     const images = extractImages(post.content); // 이미지 소스 리스트
     const text = extractText(post.content); // 텍스트 내용
     const firstImage = images[0]; // 첫 번째 이미지
-    const extraImagesCount = images.length > 1 ? `외 ${images.length - 1}` : ""; // 남은 이미지 개수
+    const extraImagesCount = images.length > 1 ? `+ ${images.length - 1}` : ""; // 남은 이미지 개수
 
     return (
-      <div className="post-item card">
+      <div
+        className="post-item card"
+        onClick={() => {
+          navigate("/boardPost", {
+            state: {
+              postId: post.postId,
+              channelName: channel.channelName,
+            },
+          });
+        }}
+      >
         <div className="post-header">
           <p className="channel ff-msl">{channel.channelName}</p>
           <p className="title">{post.title}</p>
@@ -66,14 +80,16 @@ function Board() {
           <div className="text-content">
             <p>{text}</p>
           </div>
-          {firstImage && (
-            <div className="image-content">
+          <div className="image-content">
+            {firstImage ? (
               <img src={firstImage} alt="첨부 이미지" />
-              {extraImagesCount && (
-                <span className="extra-images ff-msl">{extraImagesCount}</span>
-              )}
-            </div>
-          )}
+            ) : (
+              <span></span> // 선택: 이미지가 없을 때 표시할 텍스트
+            )}
+            {extraImagesCount && (
+              <span className="extra-images ff-msl">{extraImagesCount}</span>
+            )}
+          </div>
         </div>
 
         <div>
@@ -109,6 +125,7 @@ function Board() {
   };
 
   return (
+    // <div className="pages-container">
     <div className="pages-container">
       <div className="pages-header card">
         <span className="header-title">회원게시판</span>
@@ -130,8 +147,9 @@ function Board() {
         </div>
       </div>
       <div className="card">
-        <Panel header="글목록" toggleable className="panel">
-          <div className="panel-header">
+        {/* <Panel header="글목록" toggleable className="panel"> */}
+        <div className="panel-header">
+          {globalState.isLoggedIn ? (
             <Button
               label="글 작성"
               icon="pi pi-plus"
@@ -144,17 +162,23 @@ function Board() {
                 });
               }}
             />
-          </div>
+          ) : null}
+        </div>
+
+        {posts.length === 0 ? (
+          <div>게시글이 없습니다.</div>
+        ) : (
           <VirtualScroller
             items={posts}
             itemSize={250}
             loading={loading}
-            loadingIcon="pi pi-spin pi-spinner"
             onScroll={onScroll}
             itemTemplate={itemTemplate}
             className="board-scroll"
           />
-        </Panel>
+        )}
+
+        {/* </Panel> */}
       </div>
     </div>
   );

@@ -42,3 +42,30 @@ export const recommendPost = async (postId) => {
     throw error;
   }
 };
+
+// 게시글 상세
+export const getPost = async (postId) => {
+  try {
+    const response = await authApiClient.get("/board/detail", {
+      params: { postId },
+    });
+    console.log(response.data.data);
+    return response.data.data;
+  } catch (error) {
+    console.error("게시글 상세 API 호출 오류:", error);
+    throw error;
+  }
+};
+
+// 게시글 조회수 증가
+export const incrementViewCount = async (postId) => {
+  try {
+    const response = await authApiClient.get("/board/incrementViewCount", {
+      params: { postId },
+    });
+    return response.data.data;
+  } catch (error) {
+    console.error("게시글 조회수 증가 API 호출 오류:", error);
+    throw error;
+  }
+};
